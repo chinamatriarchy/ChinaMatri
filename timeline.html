@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>母系社会时间线 - MatriArchive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #9333ea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #9333ea;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            width: 2px;
+            height: calc(100% - 24px);
+            background: linear-gradient(to bottom, #9333ea, #e9d5ff);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    
+    <header>
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="index.html" class="flex items-center">
+                            <i data-feather="layers" class="text-purple-600 mr-2"></i>
+                            <span class="text-xl font-bold text-purple-800">MatriArchive</span>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html#definition" class="nav-link text-gray-700 hover:text-purple-600">定义</a>
+                        <a href="timeline.html" class="nav-link text-purple-600 font-semibold">时间线</a>
+                        <a href="map.html" class="nav-link text-gray-700 hover:text-purple-600">考古地图</a>
+                        <a href="goddess.html" class="nav-link text-gray-700 hover:text-purple-600">女神谱系</a>
+                        <a href="communities.html" class="nav-link text-gray-700 hover:text-purple-600">现存氏族</a>
+                        <a href="works.html" class="nav-link text-gray-700 hover:text-purple-600">相关论著</a>
+                        <a href="scholars.html" class="nav-link text-gray-700 hover:text-purple-600">学者名录</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold mb-4">母系社会历史时间线</h1>
+                <p class="text-xl">从史前时代到现代社会的母系文化发展脉络</p>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="py-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Period 1 -->
+                <div class="timeline-item mb-12 animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="timeline-line"></div>
+                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                旧石器时代晚期
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-700 mb-2">原始母系氏族萌芽</h3>
+                        <p class="text-gray-600 mb-4">约公元前50000-10000年</p>
+                        <div class="prose prose-sm">
+                            <p class="text-gray-700 mb-3">
+                                这一时期，人类主要以采集和狩猎为生。由于女性在采集活动中的重要作用，以及生育能力的神秘性，
+                                女性在氏族中逐渐获得了特殊地位。
+                            </p>
+                            <div class="bg-purple-50 p-4 rounded-lg mt-4">
+                                <h4 class="font-semibold text-purple-800 mb-2 flex items-center">
+                                    <i data-feather="star" class="w-4 h-4 mr-2"></i>
+                                    主要特征
+                                </h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>出现"维纳斯"雕像，崇拜女性生殖力</li>
+                                    <li>群婚制度，血缘关系以母系为纽带</li>
+                                    <li>女性掌握食物采集和分配权</li>
+                                    <li>洞穴壁画中女性形象突出</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Period 2 -->
+                <div class="timeline-item mb-12 animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="timeline-line"></div>
+                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                新石器时代早期
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-700 mb-2">母系氏族社会确立</h3>
+                        <p class="text-gray-600 mb-4">约公元前10000-7000年</p>
+                        <div class="prose prose-sm">
+                            <p class="text-gray-700 mb-3">
+                                农业革命开始，女性在原始农业（如采集种植）中扮演核心角色。定居生活使母系血缘关系更加稳固，
+                                母系氏族公社成为基本社会组织形式。
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-4 mt-4">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-blue-800 mb-2">社会组织</h4>
+                                    <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                        <li>氏族首领多为年长女性</li>
+                                        <li>财产公有，由女性管理</li>
+                                        <li>子女只知其母，不知其父</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-800 mb-2">生产生活</h4>
+                                    <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                        <li>女性掌握制陶技术</li>
+                                        <li>发明纺织和缝纫</li>
+                                        <li>主导农业种植活动</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Period 3 -->
+                <div class="timeline-item mb-12 animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="timeline-line"></div>
+                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                新石器时代中期
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-700 mb-2">母系社会繁荣期</h3>
+                        <p class="text-gray-600 mb-4">约公元前7000-5000年</p>
+                        <div class="prose prose-sm">
+                            <p class="text-gray-700 mb-3">
+                                这是中国母系社会最辉煌的时期。仰韶文化、河姆渡文化等考古发现充分证明了母系氏族社会的高度发展。
+                            </p>
+                            <div class="bg-purple-50 p-4 rounded-lg mt-4">
+                                <h4 class="font-semibold text-purple-800 mb-2 flex items-center">
+                                    <i data-feather="map-pin" class="w-4 h-4 mr-2"></i>
+                                    重要文化遗址
+                                </h4>
+                                <div class="space-y-3 text-sm">
+                                    <div>
+                                        <p class="font-semibold text-gray-800">仰韶文化（黄河流域）</p>
+                                        <p class="text-gray-600">半坡遗址、姜寨遗址等，彩陶上的女性图案，以女性为中心的墓葬</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-800">河姆渡文化（长江流域）</p>
+                                        <p class="text-gray-600">发达的稻作农业，女性在农业生产中的主导地位</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Period 4 -->
+                <div class="timeline-item mb-12 animate-fade-in" style="animation-delay: 0.4s;">
+                    <div class="timeline-line"></div>
+                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                新石器时代晚期
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-700 mb-2">母系向父系过渡</h3>
+                        <p class="text-gray-600 mb-4">约公元前5000-3000年</p>
+                        <div class="prose prose-sm">
+                            <p class="text-gray-700 mb-3">
+                                随着畜牧业和手工业的发展，男性在生产中的作用增强。私有制萌芽，对偶婚向一夫一妻制过渡，
+                                父系氏族逐渐取代母系氏族。
+                            </p>
+                            <div class="bg-amber-50 p-4 rounded-lg mt-4">
+                                <h4 class="font-semibold text-amber-800 mb-2">转变原因</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                                    <li>犁耕农业的出现，男性体力优势显现</li>
+                                    <li>金属工具的使用，战争频繁</li>
+                                    <li>私有财产增加，财产继承制度转变</li>
+                                    <li>对偶婚制度确立，父系血缘确定</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Period 5 -->
+                <div class="timeline-item mb-12 animate-fade-in" style="animation-delay: 0.5s;">
+                    <div class="timeline-line"></div>
+                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                青铜时代至文明时代
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-700 mb-2">父系社会确立</h3>
+                        <p class="text-gray-600 mb-4">约公元前3000年-公元前221年</p>
+                        <div class="prose prose-sm">
+                            <p class="text-gray-700 mb-3">
+                                夏商周三代确立了父权制社会。但母系文化的遗存仍在神话传说、民间信仰中保留，如女娲、西王母等女神崇拜。
+                            </p>
+                            <div class="bg-pink-50 p-4 rounded-lg mt-4">
+                                <h4 class="font-semibold text-pink-800 mb-2">母系文化遗存</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                                    <li>神话中的创世女神（女娲补天造人）</li>
+                                    <li>姓氏制度中"姓"从女（姜、姚、姬等）</li>
+                                    <li>部分地区保留母系继承传统</li>
+                                    <li>女神庙、女性祭祀活动延续</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Period 6 -->
+                <div class="timeline-item mb-12 animate-fade-in" style="animation-delay: 0.6s;">
+                    <div class="timeline-line"></div>
+                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                历史时期至近代
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-700 mb-2">母系传统的局部保留</h3>
+                        <p class="text-gray-600 mb-4">公元前221年-20世纪初</p>
+                        <div class="prose prose-sm">
+                            <p class="text-gray-700 mb-3">
+                                虽然中国主体社会已经父系化，但在一些边远地区和少数民族中，母系或母权传统得以保存，
+                                如云南摩梭人、部分藏族、纳西族群体等。
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-4 mt-4">
+                                <div class="bg-indigo-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-indigo-800 mb-2">民间信仰</h4>
+                                    <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                        <li>妈祖信仰（福建沿海）</li>
+                                        <li>观音崇拜普及</li>
+                                        <li>各地女神庙宇</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-teal-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-teal-800 mb-2">文学艺术</h4>
+                                    <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                        <li>《西游记》中的女儿国</li>
+                                        <li>少数民族史诗中的女性英雄</li>
+                                        <li>民间传说中的女神故事</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Period 7 -->
+                <div class="timeline-item mb-12 animate-fade-in" style="animation-delay: 0.7s;">
+                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition border-2 border-purple-200">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-gradient-to-r from-purple-600 to-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                现代社会
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-700 mb-2">现存母系社会与文化复兴</h3>
+                        <p class="text-gray-600 mb-4">20世纪至今</p>
+                        <div class="prose prose-sm">
+                            <p class="text-gray-700 mb-3">
+                                进入现代社会后，母系文化研究成为人类学、社会学的重要课题。中国少数几个仍保留母系传统的族群
+                                受到学术界和旅游业的关注，母系文化的价值被重新认识。
+                            </p>
+                            <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg mt-4">
+                                <h4 class="font-semibold text-purple-800 mb-3 flex items-center">
+                                    <i data-feather="users" class="w-4 h-4 mr-2"></i>
+                                    当代母系社群
+                                </h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex items-start">
+                                        <div class="w-2 h-2 bg-purple-500 rounded-full mt-1.5 mr-2"></div>
+                                        <div>
+                                            <p class="font-semibold text-gray-800">摩梭人</p>
+                                            <p class="text-gray-600">泸沽湖地区，保持完整的走婚制度和母系家庭结构</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="w-2 h-2 bg-purple-500 rounded-full mt-1.5 mr-2"></div>
+                                        <div>
+                                            <p class="font-semibold text-gray-800">部分藏族群体</p>
+                                            <p class="text-gray-600">青藏高原某些地区仍保留一妻多夫或母系继承制</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="w-2 h-2 bg-purple-500 rounded-full mt-1.5 mr-2"></div>
+                                        <div>
+                                            <p class="font-semibold text-gray-800">学术研究兴起</p>
+                                            <p class="text-gray-600">女性主义视角下重新审视母系文化的价值和意义</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Related Links -->
+        <section class="py-12 bg-gradient-to-r from-purple-600 to-blue-500">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-bold text-white text-center mb-8">深入了解</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="map.html" class="bg-white bg-opacity-10 backdrop-blur-sm text-white p-6 rounded-lg hover:bg-opacity-20 transition">
+                        <i data-feather="map" class="mb-3"></i>
+                        <h3 class="font-semibold mb-2">查看考古地图</h3>
+                        <p class="text-sm opacity-90">探索母系文化遗址的地理分布</p>
+                    </a>
+                    <a href="goddess.html" class="bg-white bg-opacity-10 backdrop-blur-sm text-white p-6 rounded-lg hover:bg-opacity-20 transition">
+                        <i data-feather="star" class="mb-3"></i>
+                        <h3 class="font-semibold mb-2">女神谱系</h3>
+                        <p class="text-sm opacity-90">了解中国古代的女神崇拜</p>
+                    </a>
+                    <a href="communities.html" class="bg-white bg-opacity-10 backdrop-blur-sm text-white p-6 rounded-lg hover:bg-opacity-20 transition">
+                        <i data-feather="users" class="mb-3"></i>
+                        <h3 class="font-semibold mb-2">现存氏族</h3>
+                        <p class="text-sm opacity-90">走进当代母系社会</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">MatriArchive</h3>
+                    <p class="mb-4">致力于中国母权/母系社会研究的学术数据库</p>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-white">首页</a></li>
+                        <li><a href="map.html" class="hover:text-white">考古地图</a></li>
+                        <li><a href="goddess.html" class="hover:text-white">女神谱系</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">更多资源</h3>
+                    <ul class="space-y-2">
+                        <li><a href="communities.html" class="hover:text-white">现存氏族</a></li>
+                        <li><a href="works.html" class="hover:text-white">相关论著</a></li>
+                        <li><a href="scholars.html" class="hover:text-white">学者名录</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">联系我们</h3>
+                    <p class="flex items-center">
+                        <i data-feather="mail" class="mr-2 w-4 h-4"></i>
+                        contact@matriarchive.org
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>© 2023 MatriArchive. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现存母系氏族 - MatriArchive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto+Serif SC', serif;
+        }
+        .community-card {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    
+    <header>
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="index.html" class="flex items-center">
+                            <i data-feather="layers" class="text-purple-600 mr-2"></i>
+                            <span class="text-xl font-bold text-purple-800">MatriArchive</span>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html#definition" class="nav-link text-gray-700 hover:text-purple-600">定义</a>
+                        <a href="timeline.html" class="nav-link text-gray-700 hover:text-purple-600">时间线</a>
+                        <a href="map.html" class="nav-link text-gray-700 hover:text-purple-600">考古地图</a>
+                        <a href="goddess.html" class="nav-link text-gray-700 hover:text-purple-600">女神谱系</a>
+                        <a href="communities.html" class="nav-link text-purple-600 font-semibold">现存氏族</a>
+                        <a href="works.html" class="nav-link text-gray-700 hover:text-purple-600">相关论著</a>
+                        <a href="scholars.html" class="nav-link text-gray-700 hover:text-purple-600">学者名录</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold mb-4">中国现存母系氏族</h1>
+                <p class="text-xl">探访依然保留母系传统的民族与社群</p>
+            </div>
+        </section>
+
+        <!-- Introduction -->
+        <section class="py-12 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-8 rounded-lg">
+                    <h2 class="text-2xl font-bold text-purple-800 mb-4 flex items-center">
+                        <i data-feather="info" class="mr-3"></i>
+                        活态的母系文化遗产
+                    </h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        虽然中国主体社会在数千年前就已转向父系制度，但在一些边远地区和少数民族中，
+                        母系或母权传统得以完整或部分保存至今。这些现存的母系社群为我们研究古代母系社会提供了宝贵的活态样本。
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        以下介绍的民族和社群，在家庭结构、财产继承、婚姻形式等方面仍保留明显的母系特征，
+                        是了解母系文化的重要窗口。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mosuo People -->
+        <section class="py-16 bg-gray-50" id="mosuo">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="inline-block bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                            最完整的母系社会
+                        </div>
+                        <h2 class="text-3xl font-bold text-purple-700 mb-4">摩梭人</h2>
+                        <p class="text-gray-600 mb-6">云南、四川交界 · 泸沽湖地区</p>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                                    <i data-feather="home" class="text-purple-600 mr-2 w-5 h-5"></i>
+                                    母系家庭结构
+                                </h3>
+                                <p class="text-gray-700">
+                                    摩梭人的家庭以母系血缘为纽带，祖母是家庭的核心和最高权威。家庭成员包括祖母、母亲、
+                                    舅舅、兄弟姐妹及姐妹的子女。男性不承担父亲角色，而是在母亲家中担任舅舅的角色。
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                                    <i data-feather="heart" class="text-pink-600 mr-2 w-5 h-5"></i>
+                                    走婚制度
+                                </h3>
+                                <p class="text-gray-700 mb-3">
+                                    摩梭人实行"走婚"（阿夏婚），男女不结婚、不同居。男性夜晚前往女方"花楼"，
+                                    黎明前返回自己母亲家。双方保持各自的家庭归属，子女由母亲家庭抚养。
+                                </p>
+                                <div class="bg-pink-50 p-4 rounded-lg">
+                                    <p class="text-sm text-gray-700">
+                                        <strong class="text-pink-800">核心特点：</strong>
+                                        自愿结合、自由分离，不涉及财产和家庭整合，保持了原始的感情纯粹性。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                                    <i data-feather="briefcase" class="text-blue-600 mr-2 w-5 h-5"></i>
+                                    财产继承
+                                </h3>
+                                <p class="text-gray-700">
+                                    家庭财产由女性继承，从祖母传给母亲，再传给女儿。男性虽参与生产劳动，
+                                    但不享有家庭财产的继承权，财产始终在母系血缘中流转。
+                                </p>
+                            </div>
+
+                            <div class="bg-purple-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-purple-800 mb-2">人口与分布</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 人口：约5-6万人</li>
+                                    <li>• 主要分布：云南省丽江市宁蒗县、四川省凉山州盐源县</li>
+                                    <li>• 中心区域：泸沽湖周边村落</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <img src="http://static.photos/travel/800x600/1" alt="泸沽湖摩梭人" class="w-full rounded-lg shadow-lg mb-6">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                                <i data-feather="alert-circle" class="text-amber-600 mr-2 w-5 h-5"></i>
+                                当代变迁
+                            </h4>
+                            <p class="text-sm text-gray-700 mb-3">
+                                随着现代化和旅游业的发展，摩梭人的传统生活方式正在经历转变。
+                                年轻一代中选择婚姻制度的人数增加，但核心的母系家庭结构在许多家庭中仍得以保留。
+                            </p>
+                            <div class="flex space-x-2 text-xs">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">文化保护</span>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded">旅游开发</span>
+                                <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded">现代冲击</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Naxi People -->
+        <section class="py-16 bg-white" id="naxi">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1">
+                        <img src="http://static.photos/travel/800x600/2" alt="纳西族" class="w-full rounded-lg shadow-lg mb-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <div class="text-2xl font-bold text-purple-700">3000+年</div>
+                                <div class="text-sm text-gray-600 mt-1">东巴文化历史</div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <div class="text-2xl font-bold text-blue-700">30万+</div>
+                                <div class="text-sm text-gray-600 mt-1">纳西族人口</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-1 md:order-2">
+                        <div class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                            母系文化遗存
+                        </div>
+                        <h2 class="text-3xl font-bold text-purple-700 mb-4">纳西族</h2>
+                        <p class="text-gray-600 mb-6">云南 · 丽江地区</p>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">历史渊源</h3>
+                                <p class="text-gray-700">
+                                    纳西族与摩梭人同源，历史上曾是典型的母系社会。虽然现已转向父系，
+                                    但在语言、文化、宗教信仰中仍保留大量母系遗迹。
+                                </p>
+                            </div>
+
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="text-lg font-semibold text-blue-800 mb-3">母系文化遗存</h3>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-blue-600 mr-2">•</span>
+                                        <span><strong>东巴文化：</strong>宗教仪式中女神地位崇高，如"署神"（创世女神）</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-600 mr-2">•</span>
+                                        <span><strong>女性地位：</strong>传统上女性掌握家庭经济，在商业活动中占主导</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-600 mr-2">•</span>
+                                        <span><strong>姓氏制度：</strong>部分地区保留母系姓氏传承</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-600 mr-2">•</span>
+                                        <span><strong>象形文字：</strong>东巴文中有大量女性崇拜符号</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">当代特征</h3>
+                                <p class="text-gray-700">
+                                    丽江纳西族女性在旅游业、手工艺等领域表现活跃，延续了传统中女性的经济主导地位。
+                                    东巴文化的保护和传承工作也重新唤起了对母系传统的关注。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dong People -->
+        <section class="py-16 bg-gray-50" id="dong">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <div class="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        女性主导的社会文化
+                    </div>
+                    <h2 class="text-3xl font-bold text-purple-700 mb-4">侗族</h2>
+                    <p class="text-gray-600">贵州、湖南、广西交界地区</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="community-card p-6 rounded-lg">
+                        <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="music" class="text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">女歌堂文化</h3>
+                        <p class="text-gray-700 text-sm">
+                            侗族的"女歌堂"是女性主导的文化空间，年轻女性在此学习侗族大歌、刺绣、纺织等传统技艺，
+                            形成独特的女性文化传承体系。
+                        </p>
+                    </div>
+
+                    <div class="community-card p-6 rounded-lg">
+                        <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="users" class="text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">母系氏族痕迹</h3>
+                        <p class="text-gray-700 text-sm">
+                            部分侗族村寨保留"从妻居"习俗，男性婚后搬到妻子家生活。女性在家庭决策中拥有重要话语权，
+                            特别是在子女教育和财产管理方面。
+                        </p>
+                    </div>
+
+                    <div class="community-card p-6 rounded-lg">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="star" class="text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">女神信仰</h3>
+                        <p class="text-gray-700 text-sm">
+                            侗族信仰"萨岁"（祖母神），被视为氏族的保护神。许多村寨建有"萨坛"，
+                            由村中年长女性主持祭祀，体现了女性的宗教权威。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-12 bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">侗族母系文化特色</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-purple-700 mb-3 flex items-center">
+                                <i data-feather="check-circle" class="w-5 h-5 mr-2"></i>
+                                社会组织
+                            </h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• 女性长老在村寨事务中有重要发言权</li>
+                                <li>• 女性主导的互助组织（如"姐妹会"）</li>
+                                <li>• 女性掌握家庭财政和日常事务</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-purple-700 mb-3 flex items-center">
+                                <i data-feather="check-circle" class="w-5 h-5 mr-2"></i>
+                                文化传承
+                            </h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• 侗族大歌主要由女性传承和演唱</li>
+                                <li>• 传统纺织、刺绣技艺母女相传</li>
+                                <li>• 民间故事中女性英雄形象突出</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Communities -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-12">其他保留母系传统的民族</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Tibetan -->
+                    <div class="bg-gradient-to-br from-purple-50 to-white p-6 rounded-lg border border-purple-100 hover:shadow-lg transition">
+                        <div class="bg-purple-600 text-white w-10 h-10 rounded-full flex items-center justify-center mb-4 text-xl font-bold">
+                            藏
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">部分藏族</h3>
+                        <p class="text-sm text-gray-600 mb-3">青藏高原部分地区</p>
+                        <p class="text-sm text-gray-700">
+                            部分藏族地区保留一妻多夫制或母系继承制，女性在家庭和宗教活动中地位较高。
+                        </p>
+                    </div>
+
+                    <!-- Jino -->
+                    <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-lg border border-blue-100 hover:shadow-lg transition">
+                        <div class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center mb-4 text-xl font-bold">
+                            基
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">基诺族</h3>
+                        <p class="text-sm text-gray-600 mb-3">云南西双版纳</p>
+                        <p class="text-sm text-gray-700">
+                            历史上为母系社会，现在仍保留女性在家庭中的重要地位和部分母系习俗。
+                        </p>
+                    </div>
+
+                    <!-- Pumi -->
+                    <div class="bg-gradient-to-br from-green-50 to-white p-6 rounded-lg border border-green-100 hover:shadow-lg transition">
+                        <div class="bg-green-600 text-white w-10 h-10 rounded-full flex items-center justify-center mb-4 text-xl font-bold">
+                            普
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">普米族</h3>
+                        <p class="text-sm text-gray-600 mb-3">云南、四川</p>
+                        <p class="text-sm text-gray-700">
+                            与摩梭人同源，部分地区保留母系家庭和走婚习俗，女性主导家庭经济。
+                        </p>
+                    </div>
+
+                    <!-- Yao -->
+                    <div class="bg-gradient-to-br from-pink-50 to-white p-6 rounded-lg border border-pink-100 hover:shadow-lg transition">
+                        <div class="bg-pink-600 text-white w-10 h-10 rounded-full flex items-center justify-center mb-4 text-xl font-bold">
+                            瑶
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">部分瑶族</h3>
+                        <p class="text-sm text-gray-600 mb-3">广西、湖南等地</p>
+                        <p class="text-sm text-gray-700">
+                            部分瑶族支系保留"招郎入赘"传统，女性在家庭中拥有较高地位。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-16 bg-gradient-to-r from-purple-600 to-blue-500 text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold mb-6">保护和传承母系文化遗产</h2>
+                <p class="text-xl mb-8">
+                    这些现存的母系社群是人类文化多样性的宝贵遗产，需要我们的理解、尊重与保护
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="scholars.html" class="bg-white text-purple-700 px-6 py-3 rounded-full font-medium hover:bg-opacity-90 transition">
+                        了解研究学者
+                    </a>
+                    <a href="works.html" class="bg-purple-800 bg-opacity-70 text-white px-6 py-3 rounded-full font-medium hover:bg-opacity-100 transition">
+                        阅读相关研究
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">MatriArchive</h3>
+                    <p class="mb-4">致力于中国母权/母系社会研究的学术数据库</p>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-white">首页</a></li>
+                        <li><a href="timeline.html" class="hover:text-white">时间线</a></li>
+                        <li><a href="map.html" class="hover:text-white">考古地图</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">更多资源</h3>
+                    <ul class="space-y-2">
+                        <li><a href="goddess.html" class="hover:text-white">女神谱系</a></li>
+                        <li><a href="works.html" class="hover:text-white">相关论著</a></li>
+                        <li><a href="scholars.html" class="hover:text-white">学者名录</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">联系我们</h3>
+                    <p class="flex items-center text-sm">
+                        <i data-feather="mail" class="mr-2 w-4 h-4"></i>
+                        contact@matriarchive.org
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>© 2023 MatriArchive. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

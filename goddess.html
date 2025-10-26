@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>女神谱系 - MatriArchive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .goddess-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .goddess-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    
+    <header>
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="index.html" class="flex items-center">
+                            <i data-feather="layers" class="text-purple-600 mr-2"></i>
+                            <span class="text-xl font-bold text-purple-800">MatriArchive</span>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html#definition" class="nav-link text-gray-700 hover:text-purple-600">定义</a>
+                        <a href="timeline.html" class="nav-link text-gray-700 hover:text-purple-600">时间线</a>
+                        <a href="map.html" class="nav-link text-gray-700 hover:text-purple-600">考古地图</a>
+                        <a href="goddess.html" class="nav-link text-purple-600 font-semibold">女神谱系</a>
+                        <a href="communities.html" class="nav-link text-gray-700 hover:text-purple-600">现存氏族</a>
+                        <a href="works.html" class="nav-link text-gray-700 hover:text-purple-600">相关论著</a>
+                        <a href="scholars.html" class="nav-link text-gray-700 hover:text-purple-600">学者名录</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="bg-gradient-to-r from-purple-600 to-pink-500 text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold mb-4">中国女神谱系</h1>
+                <p class="text-xl">从神话传说到民间信仰中的女性神祇</p>
+            </div>
+        </section>
+
+        <!-- Filter Categories -->
+        <section class="bg-white py-6 shadow-sm sticky top-0 z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-wrap gap-3 items-center justify-center">
+                    <button onclick="filterCategory('all')" class="category-btn active px-4 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition text-sm font-medium">
+                        全部
+                    </button>
+                    <button onclick="filterCategory('creation')" class="category-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition text-sm font-medium">
+                        创世女神
+                    </button>
+                    <button onclick="filterCategory('nature')" class="category-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition text-sm font-medium">
+                        自然女神
+                    </button>
+                    <button onclick="filterCategory('culture')" class="category-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition text-sm font-medium">
+                        文化女神
+                    </button>
+                    <button onclick="filterCategory('guardian')" class="category-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition text-sm font-medium">
+                        保护神
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Goddesses Grid -->
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="goddesses-container">
+                    <!-- Goddess cards will be rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Goddess Info (Modal-like sections) -->
+        <section class="py-16 bg-white" id="nuwa">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div>
+                        <img src="http://static.photos/abstract/800x600/1" alt="女娲" class="w-full rounded-lg shadow-lg">
+                    </div>
+                    <div>
+                        <div class="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold mb-4">
+                            创世女神
+                        </div>
+                        <h2 class="text-3xl font-bold text-purple-700 mb-4">女娲</h2>
+                        <div class="space-y-4 text-gray-700">
+                            <p class="text-lg font-semibold">中华民族的创世女神与人类之母</p>
+                            
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-purple-800 mb-2 flex items-center">
+                                    <i data-feather="book-open" class="w-4 h-4 mr-2"></i>
+                                    神话故事
+                                </h3>
+                                <p class="text-sm">
+                                    女娲是中国上古神话中的创世女神。相传她用黄土仿照自己造人，创造了人类社会并建立婚姻制度；
+                                    后来天塌地陷，她采五色石补天，平定水患，拯救了人类。
+                                </p>
+                            </div>
+
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-800 mb-2">历史意义</h3>
+                                <ul class="text-sm space-y-1 list-disc list-inside">
+                                    <li>反映了母系社会对女性生育能力的崇拜</li>
+                                    <li>象征着母权时代女性的至高地位</li>
+                                    <li>体现了先民对宇宙起源的原始认知</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-green-800 mb-2">文献记载</h3>
+                                <p class="text-sm">
+                                    《淮南子》《山海经》《风俗通义》等古籍均有记载。女娲造人、补天的神话故事在中国民间广为流传，
+                                    是中华文明最重要的创世神话之一。
+                                </p>
+                            </div>
+
+                            <div class="flex items-center space-x-4 pt-4">
+                                <span class="text-sm text-gray-600">相关文化：</span>
+                                <span class="bg-gray-200 px-3 py-1 rounded-full text-xs">女娲庙</span>
+                                <span class="bg-gray-200 px-3 py-1 rounded-full text-xs">补天神话</span>
+                                <span class="bg-gray-200 px-3 py-1 rounded-full text-xs">人类起源</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-gray-50" id="xiwangmu">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="order-2 md:order-1">
+                        <div class="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold mb-4">
+                            自然女神
+                        </div>
+                        <h2 class="text-3xl font-bold text-purple-700 mb-4">西王母</h2>
+                        <div class="space-y-4 text-gray-700">
+                            <p class="text-lg font-semibold">昆仑山的至高女神</p>
+                            
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-purple-800 mb-2 flex items-center">
+                                    <i data-feather="book-open" class="w-4 h-4 mr-2"></i>
+                                    神话故事
+                                </h3>
+                                <p class="text-sm">
+                                    西王母居住在昆仑山上的瑶池，是掌管不死药和长生的女神。她拥有神秘的力量，
+                                    是女仙之首，统领天界的女性神灵。在道教神话中，她与东王公并列为阴阳二气之主。
+                                </p>
+                            </div>
+
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-800 mb-2">历史演变</h3>
+                                <p class="text-sm">
+                                    西王母形象经历了从半人半兽的原始女神到雍容华贵的仙后的演变。早期形象威严恐怖，
+                                    掌管灾疫和刑罚；后期逐渐变为慈祥的女仙之首，象征长生与福祉。
+                                </p>
+                            </div>
+
+                            <div class="bg-pink-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-pink-800 mb-2">文化影响</h3>
+                                <ul class="text-sm space-y-1 list-disc list-inside">
+                                    <li>周穆王西游与西王母相会的传说</li>
+                                    <li>汉武帝求仙问道的故事</li>
+                                    <li>蟠桃会成为民间重要的神话题材</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <img src="http://static.photos/abstract/800x600/2" alt="西王母" class="w-full rounded-lg shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-16 bg-gradient-to-r from-purple-600 to-pink-500 text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold mb-6">探索更多女神文化</h2>
+                <p class="text-xl mb-8">深入了解中国母系文化中的女神崇拜与信仰体系</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="map.html" class="bg-white text-purple-700 px-6 py-3 rounded-full font-medium hover:bg-opacity-90 transition">
+                        查看考古遗址
+                    </a>
+                    <a href="works.html" class="bg-purple-800 bg-opacity-70 text-white px-6 py-3 rounded-full font-medium hover:bg-opacity-100 transition">
+                        阅读相关论著
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">MatriArchive</h3>
+                    <p class="mb-4">致力于中国母权/母系社会研究的学术数据库</p>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-white">首页</a></li>
+                        <li><a href="timeline.html" class="hover:text-white">时间线</a></li>
+                        <li><a href="map.html" class="hover:text-white">考古地图</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">更多资源</h3>
+                    <ul class="space-y-2">
+                        <li><a href="communities.html" class="hover:text-white">现存氏族</a></li>
+                        <li><a href="works.html" class="hover:text-white">相关论著</a></li>
+                        <li><a href="scholars.html" class="hover:text-white">学者名录</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">联系我们</h3>
+                    <p class="flex items-center text-sm">
+                        <i data-feather="mail" class="mr-2 w-4 h-4"></i>
+                        contact@matriarchive.org
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>© 2023 MatriArchive. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const goddesses = [
+            {
+                name: "女娲",
+                category: "creation",
+                categoryName: "创世女神",
+                description: "创造人类、补天救世的始祖女神",
+                image: "http://static.photos/abstract/640x360/1",
+                link: "#nuwa"
+            },
+            {
+                name: "西王母",
+                category: "nature",
+                categoryName: "自然女神",
+                description: "昆仑山瑶池的长生女神",
+                image: "http://static.photos/abstract/640x360/2",
+                link: "#xiwangmu"
+            },
+            {
+                name: "嫘祖",
+                category: "culture",
+                categoryName: "文化女神",
+                description: "发明养蚕缫丝的蚕神",
+                image: "http://static.photos/abstract/640x360/3",
+                link: "#leizu"
+            },
+            {
+                name: "妈祖",
+                category: "guardian",
+                categoryName: "保护神",
+                description: "东南沿海的海上保护女神",
+                image: "http://static.photos/abstract/640x360/4",
+                link: "#mazu"
+            },
+            {
+                name: "九天玄女",
+                category: "culture",
+                categoryName: "文化女神",
+                description: "传授兵法的战争女神",
+                image: "http://static.photos/abstract/640x360/5",
+                link: "#xuannv"
+            },
+            {
+                name: "织女",
+                category: "culture",
+                categoryName: "文化女神",
+                description: "天帝之女，织造云锦的女神",
+                image: "http://static.photos/abstract/640x360/6",
+                link: "#zhinu"
+            },
+            {
+                name: "常羲",
+                category: "nature",
+                categoryName: "自然女神",
+                description: "月亮女神，生十二月",
+                image: "http://static.photos/abstract/640x360/7",
+                link: "#changxi"
+            },
+            {
+                name: "羲和",
+                category: "nature",
+                categoryName: "自然女神",
+                description: "太阳女神，驾驶日车",
+                image: "http://static.photos/abstract/640x360/8",
+                link: "#xihe"
+            },
+            {
+                name: "女魃",
+                category: "nature",
+                categoryName: "自然女神",
+                description: "旱神，黄帝之女",
+                image: "http://static.photos/abstract/640x360/9",
+                link: "#nuba"
+            },
+            {
+                name: "观音",
+                category: "guardian",
+                categoryName: "保护神",
+                description: "慈悲救苦的菩萨",
+                image: "http://static.photos/abstract/640x360/10",
+                link: "#guanyin"
+            },
+            {
+                name: "碧霞元君",
+                category: "guardian",
+                categoryName: "保护神",
+                description: "泰山女神，庇佑众生",
+                image: "http://static.photos/abstract/640x360/11",
+                link: "#bixia"
+            },
+            {
+                name: "女丑",
+                category: "creation",
+                categoryName: "创世女神",
+                description: "少昊之母，东方女神",
+                image: "http://static.photos/abstract/640x360/12",
+                link: "#nuchou"
+            }
+        ];
+
+        function renderGoddesses(data) {
+            const container = document.getElementById('goddesses-container');
+            container.innerHTML = data.map(goddess => `
+                <a href="${goddess.link}" class="goddess-card block bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="aspect-w-16 aspect-h-9 overflow-hidden">
+                        <img src="${goddess.image}" alt="${goddess.name}" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-2xl font-bold text-purple-700">${goddess.name}</h3>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-semibold">
+                                ${goddess.categoryName}
+                            </span>
+                        </div>
+                        <p class="text-gray-600">${goddess.description}</p>
+                        <div class="mt-4 flex items-center text-purple-600 font-medium text-sm">
+                            了解详情
+                            <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+            feather.replace();
+        }
+
+        function filterCategory(category) {
+            // Update button styles
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-600', 'text-white', 'active');
+                btn.classList.add('bg-gray-200');
+            });
+            event.target.classList.remove('bg-gray-200');
+            event.target.classList.add('bg-purple-600', 'text-white', 'active');
+
+            // Filter data
+            const filtered = category === 'all' 
+                ? goddesses 
+                : goddesses.filter(g => g.category === category);
+
+            renderGoddesses(filtered);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderGoddesses(goddesses);
+            feather.replace();
+        });
+    </script>
+</body>
+</html>
+

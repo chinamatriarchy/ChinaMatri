@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学者名录 - MatriArchive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .scholar-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .scholar-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    
+    <header>
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="index.html" class="flex items-center">
+                            <i data-feather="layers" class="text-purple-600 mr-2"></i>
+                            <span class="text-xl font-bold text-purple-800">MatriArchive</span>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html#definition" class="nav-link text-gray-700 hover:text-purple-600">定义</a>
+                        <a href="timeline.html" class="nav-link text-gray-700 hover:text-purple-600">时间线</a>
+                        <a href="map.html" class="nav-link text-gray-700 hover:text-purple-600">考古地图</a>
+                        <a href="goddess.html" class="nav-link text-gray-700 hover:text-purple-600">女神谱系</a>
+                        <a href="communities.html" class="nav-link text-gray-700 hover:text-purple-600">现存氏族</a>
+                        <a href="works.html" class="nav-link text-gray-700 hover:text-purple-600">相关论著</a>
+                        <a href="scholars.html" class="nav-link text-purple-600 font-semibold">学者名录</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold mb-4">母系文化研究学者名录</h1>
+                <p class="text-xl">致力于母权/母系社会研究的学术先驱与当代学者</p>
+            </div>
+        </section>
+
+        <!-- Search and Filter -->
+        <section class="bg-white py-6 shadow-sm sticky top-0 z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <!-- Search -->
+                    <div class="flex-1 max-w-xl">
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="搜索学者姓名、研究领域..." 
+                                   class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <i data-feather="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filterRegion('all')" class="filter-btn px-4 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition text-sm">
+                            全部
+                        </button>
+                        <button onclick="filterRegion('chinese')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition text-sm">
+                            中国学者
+                        </button>
+                        <button onclick="filterRegion('western')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition text-sm">
+                            西方学者
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pioneer Scholars -->
+        <section class="py-16 bg-gradient-to-br from-purple-50 to-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-4">学术先驱</h2>
+                <p class="text-center text-gray-600 mb-12">奠定母权研究基础的伟大学者</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 mx-auto mb-4 flex items-center justify-center text-white text-3xl font-bold">
+                            JB
+                        </div>
+                        <h3 class="text-xl font-bold text-purple-700 mb-2">J.J. 巴霍芬</h3>
+                        <p class="text-sm text-gray-600 mb-1">Johann Jakob Bachofen</p>
+                        <p class="text-sm text-gray-500 mb-4">1815-1887 · 瑞士</p>
+                        <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                            <p class="text-sm text-gray-700">
+                                法学家、人类学家，母权研究的奠基人。1861年出版《母权论》，首次系统提出母权制度理论，
+                                认为人类社会经历了从母权到父权的演化过程。
+                            </p>
+                        </div>
+                        <span class="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs">母权论</span>
+                        <span class="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs">神话研究</span>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 mx-auto mb-4 flex items-center justify-center text-white text-3xl font-bold">
+                            LM
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">路易斯·摩尔根</h3>
+                        <p class="text-sm text-gray-600 mb-1">Lewis Henry Morgan</p>
+                        <p class="text-sm text-gray-500 mb-4">1818-1881 · 美国</p>
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <p class="text-sm text-gray-700">
+                                人类学家，通过对易洛魁人的长期研究，在《古代社会》中详细描述了母权制家庭和氏族制度，
+                                对恩格斯和马克思的理论产生重大影响。
+                            </p>
+                        </div>
+                        <span class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">古代社会</span>
+                        <span class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">氏族制度</span>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 mx-auto mb-4 flex items-center justify-center text-white text-3xl font-bold">
+                            FE
+                        </div>
+                        <h3 class="text-xl font-bold text-green-700 mb-2">弗里德里希·恩格斯</h3>
+                        <p class="text-sm text-gray-600 mb-1">Friedrich Engels</p>
+                        <p class="text-sm text-gray-500 mb-4">1820-1895 · 德国</p>
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <p class="text-sm text-gray-700">
+                                基于摩尔根的研究，从历史唯物主义角度分析母权制向父权制的转变，
+                                著有《家庭、私有制和国家的起源》，影响了整个20世纪的社会理论。
+                            </p>
+                        </div>
+                        <span class="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">马克思主义</span>
+                        <span class="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">社会变迁</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contemporary Scholars -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-12">当代研究学者</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="scholars-container">
+                    <!-- Scholars will be rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Institutions -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-12">主要研究机构</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gradient-to-br from-purple-50 to-white p-6 rounded-lg border border-purple-100 hover:shadow-lg transition">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i data-feather="home" class="text-purple-600"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">中国社会科学院</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">
+                            民族学与人类学研究所、考古研究所等多个部门从事母系文化研究，
+                            拥有丰富的田野调查和考古资料。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">民族学</span>
+                            <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">考古学</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-lg border border-blue-100 hover:shadow-lg transition">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i data-feather="home" class="text-blue-600"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">北京大学</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">
+                            社会学系、考古文博学院在母系社会研究方面有深厚积累，
+                            培养了大批相关领域的研究人才。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">社会学</span>
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">人类学</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-green-50 to-white p-6 rounded-lg border border-green-100 hover:shadow-lg transition">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i data-feather="home" class="text-green-600"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">云南大学</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">
+                            依托地理优势，在摩梭人、纳西族等少数民族母系文化研究方面处于领先地位，
+                            建立了多个田野工作站。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">民族学</span>
+                            <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">田野调查</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-pink-50 to-white p-6 rounded-lg border border-pink-100 hover:shadow-lg transition">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-pink-100 p-3 rounded-full mr-4">
+                                <i data-feather="home" class="text-pink-600"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">复旦大学</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">
+                            文学人类学研究中心在女神神话、母系文化符号研究方面有独特视角，
+                            开展跨学科综合研究。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-pink-100 text-pink-700 px-2 py-1 rounded text-xs">文学</span>
+                            <span class="bg-pink-100 text-pink-700 px-2 py-1 rounded text-xs">神话研究</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-amber-50 to-white p-6 rounded-lg border border-amber-100 hover:shadow-lg transition">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i data-feather="home" class="text-amber-600"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">中央民族大学</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">
+                            民族学与社会学学院长期关注少数民族母系文化，
+                            积累了大量珍贵的民族志资料和影像记录。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs">民族志</span>
+                            <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs">少数民族</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-indigo-50 to-white p-6 rounded-lg border border-indigo-100 hover:shadow-lg transition">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i data-feather="home" class="text-indigo-600"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">全国妇联妇女研究所</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">
+                            从性别平等视角研究母系文化，关注女性在历史和当代社会中的地位，
+                            出版《妇女研究论丛》等重要刊物。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-xs">性别研究</span>
+                            <span class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-xs">女性主义</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-16 bg-gradient-to-r from-purple-600 to-blue-500 text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold mb-6">加入研究社群</h2>
+                <p class="text-xl mb-8">
+                    如果您是相关领域的研究者，欢迎与我们联系，共同推进母系文化研究
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="mailto:contact@matriarchive.org" class="inline-flex items-center bg-white text-purple-700 px-6 py-3 rounded-full font-medium hover:bg-opacity-90 transition">
+                        <i data-feather="mail" class="mr-2 w-5 h-5"></i>
+                        联系我们
+                    </a>
+                    <a href="works.html" class="inline-flex items-center bg-purple-800 bg-opacity-70 text-white px-6 py-3 rounded-full font-medium hover:bg-opacity-100 transition">
+                        <i data-feather="book" class="mr-2 w-5 h-5"></i>
+                        查看论著
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">MatriArchive</h3>
+                    <p class="mb-4">致力于中国母权/母系社会研究的学术数据库</p>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-white">首页</a></li>
+                        <li><a href="timeline.html" class="hover:text-white">时间线</a></li>
+                        <li><a href="map.html" class="hover:text-white">考古地图</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">更多资源</h3>
+                    <ul class="space-y-2">
+                        <li><a href="goddess.html" class="hover:text-white">女神谱系</a></li>
+                        <li><a href="communities.html" class="hover:text-white">现存氏族</a></li>
+                        <li><a href="works.html" class="hover:text-white">相关论著</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">联系我们</h3>
+                    <p class="flex items-center text-sm">
+                        <i data-feather="mail" class="mr-2 w-4 h-4"></i>
+                        contact@matriarchive.org
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>© 2023 MatriArchive. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const scholars = [
+            {
+                name: "蔡华",
+                region: "chinese",
+                field: "摩梭文化研究",
+                institution: "北京大学",
+                description: "长期从事摩梭人母系社会的田野调查，著有《无父无夫的社会》，对走婚制度有深入研究。",
+                works: ["无父无夫的社会", "中国母系社会"]
+            },
+            {
+                name: "李银河",
+                region: "chinese",
+                field: "性别研究",
+                institution: "中国社会科学院",
+                description: "著名社会学家，研究领域包括性别关系、婚姻家庭、性社会学，对母系社会有独特见解。",
+                works: ["女性主义", "性社会学"]
+            },
+            {
+                name: "郭大顺",
+                region: "chinese",
+                field: "红山文化研究",
+                institution: "辽宁省文物考古研究所",
+                description: "红山文化研究权威，主持牛河梁遗址发掘，对女神庙和女性崇拜有深入研究。",
+                works: ["红山文化与中华文明起源"]
+            },
+            {
+                name: "严文明",
+                region: "chinese",
+                field: "仰韶文化研究",
+                institution: "北京大学",
+                description: "新石器考古学家，对仰韶文化的母系社会特征进行了系统研究。",
+                works: ["仰韶文化研究", "中国史前考古学导论"]
+            },
+            {
+                name: "叶舒宪",
+                region: "chinese",
+                field: "神话原型研究",
+                institution: "复旦大学",
+                description: "文学人类学学者，研究中国神话中的女神原型和母系文化遗存。",
+                works: ["中国女神", "神话学文论选"]
+            },
+            {
+                name: "宋兆麟",
+                region: "chinese",
+                field: "母系氏族研究",
+                institution: "中国社会科学院",
+                description: "综合考古学和民族学资料，系统研究中国母系氏族社会。",
+                works: ["母系氏族研究", "中国原始社会史"]
+            },
+            {
+                name: "刘达成",
+                region: "chinese",
+                field: "摩梭文化",
+                institution: "云南大学",
+                description: "长期在泸沽湖地区开展田野调查，记录了丰富的摩梭民俗资料。",
+                works: ["摩梭母系文化", "永宁纳西族的母系制"]
+            },
+            {
+                name: "和志武",
+                region: "chinese",
+                field: "纳西文化",
+                institution: "云南社会科学院",
+                description: "纳西族学者，研究东巴文化中的女性神话和母系文化遗存。",
+                works: ["东巴文化中的女性神话"]
+            },
+            {
+                name: "Marija Gimbutas",
+                region: "western",
+                field: "史前女神文化",
+                institution: "UCLA",
+                description: "立陶宛裔美国考古学家，研究欧洲史前女神文化，提出"古欧洲"文明理论。",
+                works: ["The Goddesses and Gods of Old Europe"]
+            },
+            {
+                name: "Riane Eisler",
+                region: "western",
+                field: "文化人类学",
+                institution: "Center for Partnership Studies",
+                description: "提出"共治模式"理论，研究史前女神文明与和平社会。",
+                works: ["The Chalice and the Blade", "Sacred Pleasure"]
+            },
+            {
+                name: "Peggy Reeves Sanday",
+                region: "western",
+                field: "人类学",
+                institution: "University of Pennsylvania",
+                description: "研究母权社会和女性权力，著有《女性权力与男性统治》。",
+                works: ["Female Power and Male Dominance"]
+            },
+            {
+                name: "Chris Knight",
+                region: "western",
+                field: "人类起源",
+                institution: "University of East London",
+                description: "从进化人类学角度研究母系社会的起源和女性在人类进化中的作用。",
+                works: ["Blood Relations"]
+            }
+        ];
+
+        function renderScholars(data) {
+            const container = document.getElementById('scholars-container');
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i data-feather="users" class="w-12 h-12 mx-auto text-gray-400 mb-4"></i>
+                        <p class="text-gray-500">暂无符合条件的学者</p>
+                    </div>
+                `;
+                feather.replace();
+                return;
+            }
+
+            container.innerHTML = data.map(scholar => `
+                <div class="scholar-card bg-white rounded-lg shadow-md hover:shadow-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white font-bold mr-3">
+                            ${scholar.name.charAt(0)}
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-purple-700">${scholar.name}</h3>
+                            <p class="text-xs text-gray-500">${scholar.institution}</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <span class="inline-block bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-semibold">
+                            ${scholar.field}
+                        </span>
+                    </div>
+                    <p class="text-sm text-gray-700 mb-3">${scholar.description}</p>
+                    ${scholar.works ? `
+                        <div class="border-t pt-3">
+                            <p class="text-xs text-gray-600 font-semibold mb-1">代表作品：</p>
+                            ${scholar.works.map(work => `
+                                <p class="text-xs text-gray-600">• ${work}</p>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+            
+            feather.replace();
+        }
+
+        function filterRegion(region) {
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-600', 'text-white');
+                btn.classList.add('bg-gray-200');
+            });
+            event.target.classList.remove('bg-gray-200');
+            event.target.classList.add('bg-purple-600', 'text-white');
+
+            // Filter data
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            let filtered = region === 'all' ? scholars : scholars.filter(s => s.region === region);
+            
+            if (searchTerm) {
+                filtered = filtered.filter(s => 
+                    s.name.toLowerCase().includes(searchTerm) || 
+                    s.field.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            renderScholars(filtered);
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = scholars.filter(s => 
+                s.name.toLowerCase().includes(searchTerm) || 
+                s.field.toLowerCase().includes(searchTerm) ||
+                s.description.toLowerCase().includes(searchTerm)
+            );
+            renderScholars(filtered);
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderScholars(scholars);
+            feather.replace();
+        });
+    </script>
+</body>
+</html>
+

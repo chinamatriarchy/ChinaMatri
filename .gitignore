@@ -1,0 +1,40 @@
+# 操作系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 临时文件
+*.log
+*.tmp
+.cache/
+
+# 依赖文件（如果将来添加）
+node_modules/
+vendor/
+.env
+
+# 构建输出（如果将来需要）
+dist/
+build/
+*.min.js
+*.min.css
+
+# 备份文件
+*.bak
+*.backup
+*_backup.*
+
+# 大型媒体文件（可选）
+# *.mp4
+# *.mov
+# *.avi
+# 如果图片很大，可以取消注释下面这行
+# images/original/
+
