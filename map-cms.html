@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>母系考古地图 - MatriArchive (Sanity CMS Version)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto Serif SC', serif;
+        }
+        #map {
+            height: 600px;
+            border-radius: 8px;
+        }
+        .legend {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #9333ea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    
+    <header>
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="index.html" class="flex items-center">
+                            <i data-feather="layers" class="text-purple-600 mr-2"></i>
+                            <span class="text-xl font-bold text-purple-800">MatriArchive</span>
+                            <span class="ml-2 text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">CMS</span>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html#definition" class="nav-link text-gray-700 hover:text-purple-600">定义</a>
+                        <a href="timeline.html" class="nav-link text-gray-700 hover:text-purple-600">时间线</a>
+                        <a href="map-cms.html" class="nav-link text-purple-600 font-semibold">考古地图</a>
+                        <a href="goddess.html" class="nav-link text-gray-700 hover:text-purple-600">女神谱系</a>
+                        <a href="communities.html" class="nav-link text-gray-700 hover:text-purple-600">现存氏族</a>
+                        <a href="works.html" class="nav-link text-gray-700 hover:text-purple-600">相关论著</a>
+                        <a href="scholars.html" class="nav-link text-gray-700 hover:text-purple-600">学者名录</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold mb-4">母系文化考古地图</h1>
+                <p class="text-xl">探索中国境内主要母系文化遗址的地理分布</p>
+                <div class="mt-4 flex items-center">
+                    <i data-feather="database" class="mr-2"></i>
+                    <span>数据来源: Sanity CMS</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="py-16 text-center">
+            <div class="loading mx-auto mb-4"></div>
+            <p class="text-gray-600">正在从 CMS 加载数据...</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <section id="filter-section" class="bg-white py-6 shadow-sm" style="display: none;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-wrap gap-4 items-center">
+                    <span class="font-semibold">筛选时期：</span>
+                    <button onclick="filterPeriod('all')" class="filter-btn px-4 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition">
+                        全部
+                    </button>
+                    <button onclick="filterPeriod('yangshao')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition">
+                        仰韶文化
+                    </button>
+                    <button onclick="filterPeriod('hemudu')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition">
+                        河姆渡文化
+                    </button>
+                    <button onclick="filterPeriod('hongshan')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition">
+                        红山文化
+                    </button>
+                    <button onclick="filterPeriod('dawenkou')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition">
+                        大汶口文化
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section id="map-section" class="py-8" style="display: none;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sites List -->
+        <section id="sites-section" class="py-8" style="display: none;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold mb-8">重要遗址详情</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="sites-list">
+                    <!-- Sites will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Error State -->
+        <div id="error-state" class="py-16 text-center" style="display: none;">
+            <i data-feather="alert-circle" class="w-16 h-16 text-red-500 mx-auto mb-4"></i>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">加载数据失败</h3>
+            <p class="text-gray-600 mb-4">请检查 Sanity 配置或稍后重试</p>
+            <button onclick="location.reload()" class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700">
+                重新加载
+            </button>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">MatriArchive</h3>
+                    <p class="mb-4">致力于中国母权/母系社会研究的学术数据库</p>
+                    <p class="text-sm text-gray-400">Powered by Sanity.io</p>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-white">首页</a></li>
+                        <li><a href="timeline.html" class="hover:text-white">时间线</a></li>
+                        <li><a href="goddess.html" class="hover:text-white">女神谱系</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">更多资源</h3>
+                    <ul class="space-y-2">
+                        <li><a href="communities.html" class="hover:text-white">现存氏族</a></li>
+                        <li><a href="works.html" class="hover:text-white">相关论著</a></li>
+                        <li><a href="scholars.html" class="hover:text-white">学者名录</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">联系我们</h3>
+                    <p class="flex items-center text-sm">
+                        <i data-feather="mail" class="mr-2 w-4 h-4"></i>
+                        contact@matriarchive.org
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>© 2023 MatriArchive. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sanity Client -->
+    <script src="src/js/sanity-browser.js"></script>
+
+    <script>
+        // 时期颜色映射
+        const periodColors = {
+            'yangshao': '#9333ea',
+            'hemudu': '#3b82f6',
+            'hongshan': '#ec4899',
+            'dawenkou': '#f59e0b'
+        };
+
+        let map;
+        let markers = [];
+        let allSites = [];
+
+        // 初始化地图
+        function initMap() {
+            map = L.map('map').setView([35.0, 110.0], 5);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+
+            addLegend();
+        }
+
+        function addLegend() {
+            const legend = L.control({position: 'bottomright'});
+            
+            legend.onAdd = function(map) {
+                const div = L.DomUtil.create('div', 'legend');
+                div.innerHTML = `
+                    <h4 class="font-semibold mb-2">文化时期</h4>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: ${periodColors.yangshao}"></div>
+                        <span class="text-sm">仰韶文化</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: ${periodColors.hemudu}"></div>
+                        <span class="text-sm">河姆渡文化</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: ${periodColors.hongshan}"></div>
+                        <span class="text-sm">红山文化</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: ${periodColors.dawenkou}"></div>
+                        <span class="text-sm">大汶口文化</span>
+                    </div>
+                `;
+                return div;
+            };
+            
+            legend.addTo(map);
+        }
+
+        function addMarkers(sites) {
+            // 清除现有标记
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // 添加新标记
+            sites.forEach(site => {
+                // 处理位置数据
+                const lat = site.location?.lat || site.lat;
+                const lng = site.location?.lng || site.lng;
+
+                if (!lat || !lng) {
+                    console.warn(`Site ${site.name} missing location data`);
+                    return;
+                }
+
+                const marker = L.circleMarker([lat, lng], {
+                    radius: 8,
+                    fillColor: periodColors[site.period] || '#9333ea',
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+
+                marker.bindPopup(`
+                    <div class="p-2">
+                        <h3 class="font-bold text-lg text-purple-700">${site.name}</h3>
+                        <p class="text-sm text-gray-600">${site.periodName || site.period}</p>
+                        <p class="text-sm mt-1">${site.date || ''}</p>
+                        <p class="text-sm mt-2">${site.description || ''}</p>
+                    </div>
+                `);
+
+                markers.push(marker);
+            });
+        }
+
+        function renderSitesList(sites) {
+            const container = document.getElementById('sites-list');
+            
+            if (sites.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-gray-500">暂无数据</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = sites.map(site => {
+                // 处理图片 URL
+                const imageUrl = site.image 
+                    ? window.SanityAPI.getImageUrl(site.image, 400)
+                    : 'http://static.photos/travel/400x300/1';
+
+                return `
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <img src="${imageUrl}" alt="${site.name}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-2">
+                                <div class="w-4 h-4 rounded-full mr-2" style="background-color: ${periodColors[site.period]}"></div>
+                                <span class="text-sm text-gray-600">${site.periodName || site.period}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-purple-700 mb-2">${site.name}</h3>
+                            <p class="text-sm text-gray-600 mb-3">${site.date || ''}</p>
+                            <p class="text-gray-700 mb-4">${site.description || ''}</p>
+                            ${site.findings ? `
+                                <div class="border-t pt-4">
+                                    <p class="text-sm font-semibold text-gray-700">主要发现：</p>
+                                    <p class="text-sm text-gray-600">${site.findings}</p>
+                                </div>
+                            ` : ''}
+                            <button onclick="focusOnSite(${site.location?.lat || site.lat}, ${site.location?.lng || site.lng})" 
+                                    class="mt-4 text-purple-600 hover:text-purple-800 text-sm font-medium inline-flex items-center">
+                                在地图上查看
+                                <i data-feather="map-pin" class="ml-1 w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            feather.replace();
+        }
+
+        function filterPeriod(period) {
+            // 更新按钮样式
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-600', 'text-white');
+                btn.classList.add('bg-gray-200');
+            });
+            event.target.classList.remove('bg-gray-200');
+            event.target.classList.add('bg-purple-600', 'text-white');
+
+            // 筛选数据
+            const filteredSites = period === 'all' 
+                ? allSites 
+                : allSites.filter(site => site.period === period);
+
+            // 更新地图和列表
+            addMarkers(filteredSites);
+            renderSitesList(filteredSites);
+        }
+
+        function focusOnSite(lat, lng) {
+            map.setView([lat, lng], 10);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 显示内容，隐藏加载状态
+        function showContent() {
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('filter-section').style.display = 'block';
+            document.getElementById('map-section').style.display = 'block';
+            document.getElementById('sites-section').style.display = 'block';
+        }
+
+        // 显示错误状态
+        function showError() {
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('error-state').style.display = 'block';
+        }
+
+        // 主加载函数
+        async function loadData() {
+            try {
+                console.log('🔄 开始从 Sanity 加载数据...');
+                
+                // 从 Sanity 获取数据
+                const sites = await window.SanityAPI.getSites();
+                
+                console.log(`✅ 成功加载 ${sites.length} 个遗址`);
+                
+                if (sites.length === 0) {
+                    console.warn('⚠️  没有找到数据。请在 Sanity Studio 中添加数据。');
+                    // 仍然显示界面，但列表为空
+                }
+
+                allSites = sites;
+                
+                // 初始化地图
+                initMap();
+                
+                // 显示所有数据
+                addMarkers(allSites);
+                renderSitesList(allSites);
+                
+                // 显示内容
+                showContent();
+                
+                // 初始化图标
+                feather.replace();
+                
+            } catch (error) {
+                console.error('❌ 加载数据失败:', error);
+                showError();
+            }
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('='.repeat(50));
+            console.log('MatriArchive CMS Version');
+            console.log('='.repeat(50));
+            
+            // 检查 Sanity 客户端是否已加载
+            if (typeof window.SanityAPI === 'undefined') {
+                console.error('❌ Sanity 客户端未加载');
+                showError();
+                return;
+            }
+            
+            console.log('✅ Sanity 客户端已就绪');
+            console.log('Project ID:', window.SanityAPI.config.projectId);
+            console.log('Dataset:', window.SanityAPI.config.dataset);
+            
+            // 加载数据
+            loadData();
+        });
+    </script>
+</body>
+</html>
+

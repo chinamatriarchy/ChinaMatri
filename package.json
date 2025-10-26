@@ -1,0 +1,30 @@
+{
+  "name": "chinamatri",
+  "version": "1.0.0",
+  "description": "中国母权文化数据库 - 基于 Sanity CMS",
+  "main": "index.html",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "start": "python3 -m http.server 8000",
+    "studio": "cd studio && npx sanity dev",
+    "migrate": "node src/data/migrate-to-sanity.js"
+  },
+  "keywords": [
+    "sanity",
+    "cms",
+    "matriarchy",
+    "archaeology"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sanity/client": "^6.15.7",
+    "@sanity/image-url": "^1.0.2"
+  },
+  "devDependencies": {
+    "@sanity/cli": "^3.99.0",
+    "sanity": "^3.99.0"
+  }
+}
