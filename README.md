@@ -1,55 +1,78 @@
-# MatriArchive - 中国母权文化数据库
+# 个人知识站点 - CMS 驱动
 
-一个关于中国母权/母系文化的综合性学术数据库网站。
+一个基于 Sanity CMS 的个人知识管理系统，用于收集、整理和展示您感兴趣的知识内容。
+
+## 🌟 特性
+
+- 📚 **内容管理**: 使用 Sanity Studio 轻松管理所有内容
+- 🗺️ **地图可视化**: 交互式地图展示地理相关的知识点
+- 🎨 **美观设计**: 现代化响应式界面
+- 🔒 **完全掌控**: 所有数据和代码都在您的控制之下
+- 💾 **易于备份**: 简单的数据导出和导入
+- 🚀 **免费托管**: 可使用免费服务部署
 
 ## 📚 网站结构
 
 ```
-ChinaMatri/
-├── index.html          # 主页 - 网站入口和概览
-├── timeline.html       # 时间线 - 母系社会历史发展
-├── map.html           # 考古地图 - 交互式地图展示遗址分布
-├── goddess.html       # 女神谱系 - 中国女神神话和崇拜
-├── communities.html   # 现存氏族 - 当代母系社会群体
-├── works.html         # 相关论著 - 学术文献目录
-└── scholars.html      # 学者名录 - 研究学者介绍
+个人知识站点/
+├── index.html          # 主页
+├── timeline.html       # 时间线视图
+├── map.html           # 地图可视化（静态版本）
+├── map-cms.html       # 地图可视化（CMS版本）✨
+├── goddess.html       # 内容分类页面
+├── scholars.html      # 人物页面
+├── works.html         # 资源页面
+├── communities.html   # 社群页面
+└── studio/            # Sanity CMS 管理后台
 ```
 
 ## 🎨 设计特色
 
 ### 视觉风格
-- **色彩方案**: 紫色到蓝色渐变 (`#9333ea` - `#3b82f6`)
-- **字体**: Noto Serif SC (思源宋体)
+- **色彩方案**: 紫色到蓝色渐变（可自定义）
+- **字体**: Noto Serif SC
 - **UI框架**: Tailwind CSS
 - **图标**: Feather Icons
-- **交互效果**: 动画过渡、悬停效果
+- **交互**: 流畅的动画过渡
 
 ### 核心功能
 
-1. **交互式地图** (map.html)
+1. **交互式地图** (map-cms.html)
    - 使用 Leaflet.js 实现地理可视化
-   - 考古遗址标记和分类
-   - 按文化时期筛选
+   - 从 Sanity CMS 动态加载数据
+   - 支持按类别筛选
    - 点击查看详情
 
-2. **动态内容加载**
-   - JavaScript 渲染数据
-   - 搜索和筛选功能
-   - 响应式设计
+2. **内容管理 (Sanity Studio)**
+   - 可视化编辑器
+   - 图片上传和优化
+   - 富文本编辑
+   - 实时预览
 
-3. **数据组织**
-   - 所有数据存储在 JavaScript 数组中
-   - 易于扩展和维护
-   - 可转换为 JSON 文件
+3. **动态内容**
+   - 从 CMS 实时加载
+   - 无需重新部署即可更新内容
+   - 响应式设计
+   - 搜索和筛选
 
 ## 🛠️ 技术栈
 
-### 前端技术
-- **HTML5**: 语义化标记
-- **CSS3**: Tailwind CSS + 自定义样式
-- **JavaScript**: 原生 ES6+
-- **地图库**: Leaflet.js v1.9.4
-- **图标库**: Feather Icons
+### 前端
+- HTML5 + CSS3
+- Tailwind CSS
+- JavaScript (ES6+)
+- Leaflet.js (地图可视化)
+- Feather Icons
+
+### CMS
+- Sanity.io
+- Sanity Studio
+- GROQ 查询语言
+
+### 托管
+- 网站：Netlify / Vercel / GitHub Pages
+- Studio：Sanity 托管 (免费)
+- 图片：Sanity CDN (自动优化)
 
 ### CDN 资源
 ```html
@@ -97,168 +120,177 @@ const goddesses = [
 ];
 ```
 
-## 🚀 如何扩展
+## 🚀 快速开始
 
-### 1. 添加新数据
-在对应页面的 `<script>` 标签中的数组里添加新条目：
+### 1. 克隆并安装
 
-```javascript
-// 在 map.html 中添加新遗址
-archaeologicalSites.push({
-    name: "新遗址名称",
-    period: "文化类型",
-    // ... 其他字段
-});
-```
-
-### 2. 连接后端数据库
-
-**方案 A: JSON 文件（静态）**
-```javascript
-// 创建 data/sites.json
-fetch('data/sites.json')
-    .then(response => response.json())
-    .then(data => {
-        archaeologicalSites = data;
-        addMarkers(archaeologicalSites);
-    });
-```
-
-**方案 B: API 接口（动态）**
-```javascript
-// 连接后端 API
-fetch('https://api.matriarchive.org/sites')
-    .then(response => response.json())
-    .then(data => renderSites(data));
-```
-
-### 3. 添加数据库支持
-
-**推荐技术栈：**
-- **后端**: Node.js + Express / Python + Flask / Django
-- **数据库**: 
-  - MySQL/PostgreSQL (关系型，适合结构化数据)
-  - MongoDB (文档型，适合灵活数据)
-- **API**: RESTful API 或 GraphQL
-
-**数据库设计示例：**
-```sql
-CREATE TABLE archaeological_sites (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100),
-    period VARCHAR(50),
-    latitude DECIMAL(10, 8),
-    longitude DECIMAL(11, 8),
-    date_period VARCHAR(100),
-    description TEXT,
-    findings TEXT,
-    image_url VARCHAR(255),
-    created_at TIMESTAMP
-);
-```
-
-### 4. 添加多媒体支持
-
-**图片管理：**
-```javascript
-// 使用云存储服务（如阿里云OSS、七牛云）
-const imageUrl = `https://cdn.matriarchive.org/images/${siteId}.jpg`;
-```
-
-**视频嵌入：**
-```html
-<div class="video-container">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-</div>
-```
-
-**音频播放器：**
-```html
-<audio controls>
-    <source src="audio/interview.mp3" type="audio/mpeg">
-</audio>
-```
-
-## 🔧 本地开发
-
-### 运行网站
-
-1. **简单方式**：直接在浏览器中打开 `index.html`
-
-2. **本地服务器**（推荐）：
 ```bash
-# 使用 Python
-python -m http.server 8000
-
-# 或使用 Node.js
-npx http-server -p 8000
-
-# 或使用 Live Server (VS Code 插件)
+git clone <your-repo-url>
+cd personal-knowledge-site
+npm install
 ```
 
-3. 访问: `http://localhost:8000`
+### 2. 创建 Sanity 项目
 
-### 部署到服务器
+```bash
+npx sanity login
+cd studio
+npx sanity init
+```
 
-**方式 1: 静态托管**
-- GitHub Pages
-- Netlify
-- Vercel
-- Cloudflare Pages
+### 3. 配置 Project ID
 
-**方式 2: 传统服务器**
-- 上传所有文件到服务器的 Web 目录
-- 配置 Nginx/Apache
+在以下文件中替换 `your-project-id`：
+- `studio/sanity.config.js`
+- `src/js/sanityClient.js`
+- `src/js/sanity-browser.js`
 
-## 📝 后续优化建议
+### 4. 启动开发环境
 
-### 功能增强
-1. ✅ **搜索功能**: 已实现基础搜索
-2. ⭐ **用户账号系统**: 收藏、笔记、评论
-3. ⭐ **多语言支持**: 中英文切换
-4. ⭐ **高级筛选**: 多条件组合筛选
-5. ⭐ **3D 展示**: 文物三维模型展示
-6. ⭐ **时间轴动画**: 更生动的历史演变展示
+```bash
+# Terminal 1: Sanity Studio
+cd studio
+npx sanity dev
 
-### 性能优化
-1. **图片懒加载**: 提高页面加载速度
-2. **代码分离**: 将 JavaScript 移到单独文件
-3. **缓存策略**: Service Worker 离线支持
-4. **CDN 加速**: 使用 CDN 加速资源加载
+# Terminal 2: 网站
+npm start
+```
 
-### SEO 优化
-1. **元标签**: 添加 description, keywords
-2. **结构化数据**: Schema.org markup
-3. **Sitemap**: 生成网站地图
-4. **Analytics**: 添加统计分析
+访问：
+- Studio: http://localhost:3333
+- 网站: http://localhost:8000
 
-## 📖 学习资源
+**详细步骤请查看 `QUICKSTART.md`** 📖
 
-### 前端开发
-- [MDN Web Docs](https://developer.mozilla.org/)
-- [Tailwind CSS 文档](https://tailwindcss.com/docs)
-- [Leaflet 教程](https://leafletjs.com/examples.html)
+## 📊 数据结构
 
-### 数据库设计
-- [Database Design Tutorial](https://www.lucidchart.com/pages/database-diagram/database-design)
-- [SQL 教程](https://www.w3schools.com/sql/)
-- [MongoDB 大学](https://university.mongodb.com/)
+### 内容模型 (Schemas)
 
-### 后端开发
-- [Express.js 指南](https://expressjs.com/)
-- [Flask 快速入门](https://flask.palletsprojects.com/)
-- [Django 教程](https://docs.djangoproject.com/)
+1. **archaeologicalSite** - 地理位置相关的内容
+   - 名称、位置坐标、描述、图片等
+   
+2. **goddess** - 分类内容示例
+   - 支持富文本、分类、标签
+
+3. **scholar** - 人物信息
+   - 姓名、领域、作品列表
+
+4. **publication** - 资源/文档
+   - 标题、作者、标签、链接
+
+5. **community** - 群组/社区
+   - 地理位置、图片集、描述
+
+💡 这些模型可以根据您的需求自由修改和扩展！
+
+## 🔧 自定义指南
+
+### 修改 Studio 名称
+
+编辑 `studio/sanity.config.js`：
+```javascript
+title: 'Your Custom Title'
+```
+
+### 添加新的内容类型
+
+1. 在 `studio/schemas/` 创建新文件
+2. 定义 schema
+3. 在 `studio/schemas/index.js` 中导入
+
+### 自定义主题颜色
+
+编辑 HTML 文件中的 Tailwind 类或添加自定义 CSS。
+
+## 🚢 部署
+
+详细部署指南请查看 `DEPLOYMENT.md`
+
+### 快速部署
+
+**Netlify (推荐):**
+```bash
+git push  # 推送到 GitHub
+# 在 Netlify 连接仓库即可自动部署
+```
+
+**Sanity Studio:**
+```bash
+cd studio
+npx sanity deploy
+```
+
+您的 Studio 将部署到：`https://your-project.sanity.studio`
+
+## 💾 数据备份
+
+定期备份您的知识库：
+
+```bash
+cd studio
+npx sanity dataset export production backup-$(date +%Y%m%d).tar.gz
+```
+
+💡 建议设置自动备份脚本（cron job）
+
+## 📖 文档
+
+- 📖 **QUICKSTART.md** - 15分钟快速上手 ⭐
+- 📖 **DEPLOYMENT.md** - 完整部署指南
+- 📖 **CMS-SETUP.md** - CMS 详细设置
+- 📖 **PROJECT-STRUCTURE.md** - 项目结构说明
+- 📖 **GUIDE.md** - 技术详解
+- 📖 **GIT-GUIDE.md** - Git 版本管理
+
+## 🆘 故障排除
+
+### CORS 错误
+在 Sanity 项目设置中添加您的域名到 CORS Origins。
+
+### 数据不显示
+1. 检查 Project ID 是否正确
+2. 确认数据已在 Studio 中发布
+3. 查看浏览器控制台的错误信息
+
+### 图片无法加载
+确保使用 `getImageUrl()` 函数生成正确的 URL。
+
+更多问题请查看各个文档文件的故障排除部分。
+
+## 🔒 隐私和安全
+
+- ✅ 所有数据由您控制
+- ✅ 可以随时导出全部内容
+- ✅ 使用 HTTPS 加密传输
+- ✅ 可以设置访问权限
+- ✅ 定期备份防止数据丢失
+
+## 💰 成本
+
+### 免费使用（推荐）
+- Sanity Free Plan: 无限文档，10GB 存储
+- Netlify/Vercel: 100GB 带宽/月
+- **总成本：$0/月** ✅
+
+### 扩展选项
+如需更多资源，付费计划从 $19/月起。
+
+## 🤝 贡献
+
+这是您的个人项目！可以随意修改、扩展和定制。
 
 ## 📄 许可证
 
-© 2023 MatriArchive. 保留所有权利。
-
-## 📧 联系方式
-
-- Email: contact@matriarchive.org
-- 地址: 北京海淀区学院路
+MIT License - 可以自由使用和修改
 
 ---
 
-**开发说明**: 这是一个学术研究型网站，所有内容仅供学习和研究使用。如需引用相关资料，请注明出处。
+## ⭐ 下一步
+
+1. 📖 阅读 `QUICKSTART.md` 开始设置
+2. 🎨 自定义设计和内容模型
+3. ✍️ 添加您的第一篇内容
+4. 🚀 部署到您的个人域名
+
+**开始构建您的个人知识库吧！** 🎉
 

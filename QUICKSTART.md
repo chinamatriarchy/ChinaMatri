@@ -1,4 +1,4 @@
-# Sanity CMS 快速开始指南
+# 个人知识站点 - 快速开始指南
 
 ## ✅ 完成状态检查
 
@@ -12,10 +12,10 @@
 - [x] 编写完整文档
 
 ### 待完成 □
-- [ ] 创建 Sanity 项目并获取 Project ID
+- [ ] 创建个人 Sanity 项目并获取 Project ID
 - [ ] 配置 Project ID 到所有文件
 - [ ] 启动 Sanity Studio
-- [ ] 添加测试数据
+- [ ] 添加个人知识内容
 - [ ] 配置 CORS
 - [ ] 测试数据加载
 - [ ] 重构所有页面
@@ -24,10 +24,10 @@
 
 ## 🚀 15分钟快速开始
 
-### 1. 创建 Sanity 项目 (5分钟)
+### 1. 创建个人 Sanity 项目 (5分钟)
 
 ```bash
-# 登录 Sanity
+# 使用个人账号登录 Sanity
 npx sanity login
 
 # 初始化项目
@@ -36,7 +36,7 @@ npx sanity init --project-plan free
 
 # 按提示选择：
 # - Create new project
-# - Project name: MatriArchive CMS  
+# - Project name: My Knowledge Base (或您喜欢的名字)  
 # - Use default dataset configuration? Y
 # - Output path: ./ (当前目录)
 ```
@@ -73,32 +73,31 @@ npx sanity dev
 
 Studio 将在 http://localhost:3333 启动 🎉
 
-### 4. 添加测试数据 (3分钟)
+### 4. 添加个人知识内容 (3分钟)
 
-在 Studio 中添加一个测试遗址：
+在 Studio 中添加您的第一条内容：
 
 1. 打开 http://localhost:3333
-2. 点击 **"考古遗址"**
+2. 选择任意内容类型（如 **"考古遗址"**）
 3. 点击右上角 **"Create"** 按钮
-4. 填写数据：
-   - **遗址名称**: 半坡遗址
-   - **文化时期**: 选择 "yangshao"
-   - **文化时期名称**: 仰韶文化
-   - **地理位置**: 点击地图，选择大致位置
-   - **年代**: 约公元前4800-3600年
-   - **描述**: 位于陕西西安，是仰韶文化的典型遗址
-   - **主要发现**: 彩陶、石器、房屋遗址
+4. 填写您感兴趣的数据
 5. 点击右下角 **"Publish"**
+
+💡 这是您的个人知识库，可以自由添加任何感兴趣的内容！
 
 ### 5. 配置 CORS (2分钟)
 
+在您的个人 Sanity 项目中配置允许的访问源：
+
 1. 访问 https://www.sanity.io/manage
-2. 选择你的项目 **"MatriArchive CMS"**
+2. 选择您的项目
 3. 点击 **Settings** → **API** → **CORS Origins**
 4. 点击 **"Add CORS origin"**
 5. 添加：`http://localhost:8000`
 6. 勾选 **"Allow credentials"**
 7. 点击 **"Save"**
+
+💡 稍后部署时，记得添加您的个人域名
 
 ### 6. 测试！(1分钟)
 
@@ -169,21 +168,22 @@ npx sanity dev
 完成快速开始后：
 
 ### 立即可做
-1. ✅ 在 Studio 中添加更多数据
+1. ✅ 在 Studio 中添加您感兴趣的内容
 2. ✅ 查看 map-cms.html 的效果
 3. ✅ 尝试筛选功能
+4. ✅ 自定义内容模型以适应您的需求
 
 ### 本周计划
-1. 📝 运行数据迁移脚本（`src/data/migrate-to-sanity.js`）
-2. 📝 重构其他页面（goddess.html, scholars.html 等）
-3. 📝 上传真实图片到 Sanity
+1. 📝 添加更多个人收集的知识内容
+2. 📝 重构其他页面以显示您的内容
+3. 📝 上传个人图片和媒体文件到 Sanity
 
 ### 长期计划
-1. 🎯 部署 Studio 到 Sanity 云端
-2. 🎯 部署网站到 Netlify/Vercel
-3. 🎯 添加搜索功能
-4. 🎯 添加内容版本控制
-5. 🎯 创建内容编辑指南
+1. 🎯 部署 Studio 到您的个人子域（如 studio.yourdomain.com）
+2. 🎯 部署网站到您的个人域名
+3. 🎯 添加个性化功能（搜索、标签、笔记等）
+4. 🎯 扩展内容模型以支持更多知识类型
+5. 🎯 定期备份您的知识库
 
 ---
 
@@ -228,16 +228,20 @@ git status
 - 添加自定义组件
 - 配置工作区布局
 
-### 数据备份
+### 个人数据备份（重要！）
+
+定期备份您的知识库：
 
 ```bash
-# 导出数据
+# 导出所有数据
 cd studio
-npx sanity dataset export production backup.tar.gz
+npx sanity dataset export production backup-$(date +%Y%m%d).tar.gz
 
-# 导入数据
-npx sanity dataset import backup.tar.gz production
+# 恢复数据
+npx sanity dataset import backup-20240101.tar.gz production
 ```
+
+💡 建议每周备份一次，保存在安全的地方（如个人云盘）
 
 ### 性能优化
 
@@ -250,16 +254,22 @@ npx sanity dataset import backup.tar.gz production
 
 ## ✨ 成功！
 
-如果你完成了上面的步骤，你现在有：
+如果您完成了上面的步骤，您现在拥有：
 
-- ✅ 一个功能完整的 Sanity Studio
-- ✅ 可以动态加载内容的网站
-- ✅ 完整的内容管理能力
-- ✅ 现代化的 CMS 架构
+- ✅ 一个完全属于您的内容管理系统
+- ✅ 可以随时更新的个人知识站点
+- ✅ 专业级的内容管理能力
+- ✅ 完全在您控制之下的数据
 
-**恭喜！你已经将静态网站成功升级为 CMS 驱动的动态网站！** 🎉
+**恭喜！您已经建立了自己的个人知识管理平台！** 🎉
+
+💡 这是您的个人空间，可以：
+- 收集和整理任何感兴趣的知识
+- 按照自己的方式组织内容
+- 随时添加新的内容类型
+- 完全控制数据的存储和展示
 
 有问题？查看 `CMS-SETUP.md` 获取详细信息。
 
-Happy coding! 🚀
+Happy knowledge building! 🚀
 

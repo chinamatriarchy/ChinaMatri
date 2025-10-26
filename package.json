@@ -1,7 +1,7 @@
 {
-  "name": "chinamatri",
+  "name": "personal-knowledge-site",
   "version": "1.0.0",
-  "description": "中国母权文化数据库 - 基于 Sanity CMS",
+  "description": "个人知识站点 - 基于 Sanity CMS",
   "main": "index.html",
   "scripts": {
     "dev": "sanity dev",
@@ -14,11 +14,11 @@
   "keywords": [
     "sanity",
     "cms",
-    "matriarchy",
-    "archaeology"
+    "personal",
+    "knowledge-base"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
     "@sanity/client": "^6.15.7",
     "@sanity/image-url": "^1.0.2"

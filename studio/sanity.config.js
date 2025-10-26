@@ -5,9 +5,9 @@ import {schemaTypes} from './schemas'
 
 export default defineConfig({
   name: 'default',
-  title: 'MatriArchive CMS',
+  title: 'My Knowledge Base', // 个性化您的 Studio 名称
 
-  projectId: 'your-project-id', // 需要替换为实际的 project ID
+  projectId: 'your-project-id', // 需要替换为您的个人 project ID
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
