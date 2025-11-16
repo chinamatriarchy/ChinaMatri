@@ -1,6 +1,6 @@
 // Sanity 配置
 const SANITY_CONFIG = {
-  projectId: 'your-project-id', // 需要替换
+  projectId: '8i1xhvuq',
   dataset: 'production',
   apiVersion: '2024-01-01'
 };

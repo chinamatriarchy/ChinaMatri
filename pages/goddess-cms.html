@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>女神谱系 - 母权文化知识库</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+    <script src="src/js/sanity-unified.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- 顶部导航 -->
+    <nav class="fixed w-full bg-gray-900/80 backdrop-blur-sm z-50 border-b border-purple-500/20">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+                    母权文化知识库
+                </h1>
+                <div class="flex gap-4">
+                    <a href="index.html" class="hover:text-purple-400">首页</a>
+                    <a href="map.html" class="hover:text-purple-400">遗址地图</a>
+                    <a href="goddess.html" class="text-purple-400">女神谱系</a>
+                    <a href="scholars.html" class="hover:text-purple-400">学者</a>
+                    <a href="works.html" class="hover:text-purple-400">论著</a>
+                    <a href="communities.html" class="hover:text-purple-400">现存氏族</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Vanta 背景 -->
+    <div id="vanta-bg" class="fixed inset-0 -z-10"></div>
+
+    <!-- 主内容 -->
+    <main class="container mx-auto px-6 pt-24 pb-12">
+        <!-- 页面标题 -->
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+                ⭐ 女神谱系
+            </h2>
+            <p class="text-gray-400">从统一数据模型加载 - 按分类自动展示</p>
+        </div>
+
+        <!-- 分类筛选 -->
+        <div class="flex justify-center gap-3 mb-8 flex-wrap">
+            <button onclick="filterGoddesses('all')" class="filter-btn active px-6 py-2 rounded-full bg-purple-500/20 hover:bg-purple-500/40 transition border border-purple-500/40">
+                全部
+            </button>
+            <button onclick="filterGoddesses('creation')" class="filter-btn px-6 py-2 rounded-full bg-purple-500/20 hover:bg-purple-500/40 transition border border-purple-500/40">
+                创世女神
+            </button>
+            <button onclick="filterGoddesses('nature')" class="filter-btn px-6 py-2 rounded-full bg-purple-500/20 hover:bg-purple-500/40 transition border border-purple-500/40">
+                自然女神
+            </button>
+            <button onclick="filterGoddesses('culture')" class="filter-btn px-6 py-2 rounded-full bg-purple-500/20 hover:bg-purple-500/40 transition border border-purple-500/40">
+                文化女神
+            </button>
+        </div>
+
+        <!-- 内容网格 -->
+        <div id="goddess-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 加载提示 -->
+            <div class="col-span-full text-center py-12">
+                <div class="animate-spin w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+                <p class="text-gray-400">正在从 CMS 加载数据...</p>
+            </div>
+        </div>
+
+        <!-- 统计信息 -->
+        <div class="mt-12 text-center">
+            <div class="inline-block bg-gray-800/50 backdrop-blur-sm rounded-lg px-6 py-4 border border-purple-500/20">
+                <p class="text-gray-400">
+                    共有 <span id="total-count" class="text-purple-400 font-bold">0</span> 位女神
+                    · 数据来源：统一内容模型（category: goddess）
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Vanta 背景
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x9333ea,
+            backgroundColor: 0x111827
+        });
+
+        // 女神数据
+        let allGoddesses = [];
+
+        // 加载女神数据
+        async function loadGoddesses() {
+            try {
+                const goddesses = await SanityAPI.getGoddesses();
+                allGoddesses = goddesses;
+                renderGoddesses(goddesses);
+                document.getElementById('total-count').textContent = goddesses.length;
+                
+                // 如果没有数据，显示示例
+                if (goddesses.length === 0) {
+                    showSampleData();
+                }
+            } catch (error) {
+                console.error('Error loading goddesses:', error);
+                showSampleData();
+            }
+        }
+
+        // 渲染女神卡片
+        function renderGoddesses(goddesses) {
+            const grid = document.getElementById('goddess-grid');
+            
+            if (goddesses.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-gray-400 text-lg">暂无数据</p>
+                        <p class="text-gray-500 text-sm mt-2">请在 Sanity Studio 中添加 category 为 "goddess" 的内容</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = goddesses.map(goddess => `
+                <div class="goddess-card bg-gray-800/50 backdrop-blur-sm rounded-lg overflow-hidden border border-purple-500/20 hover:border-purple-500/50 transition hover:scale-105 cursor-pointer" data-id="${goddess._id}">
+                    ${goddess.image ? `
+                        <img src="${SanityAPI.getImageUrl(goddess.image, 600)}" 
+                             alt="${goddess.title}" 
+                             class="w-full h-48 object-cover">
+                    ` : `
+                        <div class="w-full h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                            <span class="text-6xl">⭐</span>
+                        </div>
+                    `}
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="text-xl font-bold text-purple-300">${goddess.title}</h3>
+                            ${goddess.categoryName ? `
+                                <span class="text-xs px-2 py-1 bg-purple-500/20 rounded-full text-purple-300">${goddess.categoryName}</span>
+                            ` : ''}
+                        </div>
+                        ${goddess.subtitle ? `
+                            <p class="text-gray-400 text-sm mb-3">${goddess.subtitle}</p>
+                        ` : ''}
+                        ${goddess.summary ? `
+                            <p class="text-gray-300 text-sm mb-4 line-clamp-3">${goddess.summary}</p>
+                        ` : ''}
+                        ${goddess.relatedCultures && goddess.relatedCultures.length > 0 ? `
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                ${goddess.relatedCultures.slice(0, 3).map(tag => `
+                                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">${tag}</span>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            feather.replace();
+        }
+
+        // 筛选功能
+        function filterGoddesses(subcategory) {
+            // 更新按钮状态
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-purple-500', 'text-white');
+            });
+            event.target.classList.add('active', 'bg-purple-500', 'text-white');
+
+            // 筛选数据
+            let filtered = allGoddesses;
+            if (subcategory !== 'all') {
+                filtered = allGoddesses.filter(g => g.category === subcategory);
+            }
+            
+            renderGoddesses(filtered);
+        }
+
+        // 显示示例数据（如果 CMS 中没有数据）
+        function showSampleData() {
+            const grid = document.getElementById('goddess-grid');
+            grid.innerHTML = `
+                <div class="col-span-full bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-yellow-400 mb-3">💡 这是统一数据模型示例</h3>
+                    <p class="text-gray-300 mb-4">目前 CMS 中还没有数据。请在 Sanity Studio 中：</p>
+                    <ol class="list-decimal list-inside text-gray-400 space-y-2 mb-4">
+                        <li>创建新内容（Content → Entry → Create）</li>
+                        <li>选择 <strong class="text-purple-400">分类 = 🗺️ 女神</strong></li>
+                        <li>填写标题、子分类（创世女神/自然女神等）</li>
+                        <li>其他字段可选填写</li>
+                        <li>发布后即可在此页面看到</li>
+                    </ol>
+                    <p class="text-gray-400 text-sm">
+                        ✨ 优势：所有数据用同一个模型，只需选择不同的 category 即可自动显示在对应页面！
+                    </p>
+                </div>
+            `;
+            document.getElementById('total-count').textContent = '0';
+        }
+
+        // 页面加载时获取数据
+        loadGoddesses();
+    </script>
+</body>
+</html>
+
+
+
+
+

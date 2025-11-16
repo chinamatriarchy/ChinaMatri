@@ -1,9 +1,9 @@
-// 现存氏族 Schema - 基于 Google Sheets "现存氏族（李雯）" 标签页
+// 古代母权社会 Schema - 基于 Google Sheets "古代母权社会（李雯）" 标签页
 export default {
-  name: 'community',
-  title: '现存氏族',
+  name: 'ancientMatriarchalSociety',
+  title: '古代母权社会',
   type: 'document',
-  icon: () => '🏘️',
+  icon: () => '🏛️',
   fields: [
     // === 核心字段（对应 Google Sheets 列）===
     {
@@ -11,68 +11,61 @@ export default {
       title: '氏族名',
       type: 'string',
       validation: Rule => Rule.required(),
-      description: '例如：摩梭人、基诺族'
+      description: '例如：良渚文化部落、红山文化部落'
     },
     {
       name: 'region',
       title: '分布地区',
       type: 'string',
       validation: Rule => Rule.required(),
-      description: '例如：云南泸沽湖、西藏林芝'
+      description: '例如：长江下游、内蒙古东部'
     },
     {
       name: 'population',
       title: '人口',
       type: 'string',
-      description: '例如：约5-6万人'
+      description: '考古推测的大致人口规模'
     },
     {
       name: 'matriarchalFeatures',
       title: '母权或母系特征',
       type: 'text',
       rows: 4,
-      description: '描述该氏族的母权或母系社会特征'
+      description: '该古代社会的母权或母系特征证据'
     },
     {
       name: 'historicalOrigin',
       title: '历史渊源',
       type: 'array',
       of: [{type: 'block'}],
-      description: '氏族的历史来源和发展'
+      description: '该古代氏族的历史背景和发展'
     },
     {
       name: 'religion',
       title: '宗教信仰',
       type: 'text',
       rows: 3,
-      description: '例如：达巴教、藏传佛教'
+      description: '该古代社会的宗教信仰和祭祀活动'
     },
     {
       name: 'notableFigures',
       title: '著名人物',
       type: 'array',
       of: [{type: 'string'}],
-      description: '该氏族的著名人物'
+      description: '传说中的著名人物或历史记载'
     },
     {
       name: 'tribalGoddess',
       title: '民族女神',
       type: 'string',
-      description: '该氏族崇拜的女神名称'
+      description: '该古代社会崇拜的女神名称'
     },
     {
       name: 'relatedResearch',
       title: '相关研究',
       type: 'text',
       rows: 3,
-      description: '相关学术研究和文献'
-    },
-    {
-      name: 'mediaWorks',
-      title: '相关影视文学作品',
-      type: 'array',
-      of: [{type: 'string'}],
-      description: '相关的影视、文学作品'
+      description: '相关考古研究和学术文献'
     },
     {
       name: 'tags',
@@ -110,6 +103,24 @@ export default {
     
     // === 额外有用的字段 ===
     {
+      name: 'timePeriod',
+      title: '时代',
+      type: 'string',
+      description: '例如：新石器时代晚期、青铜时代'
+    },
+    {
+      name: 'startYear',
+      title: '开始年份（BCE）',
+      type: 'number',
+      description: '公元前年份，数字越大表示越早'
+    },
+    {
+      name: 'endYear',
+      title: '结束年份（BCE）',
+      type: 'number',
+      description: '公元前年份，数字越小表示越晚'
+    },
+    {
       name: 'location',
       title: '地图坐标',
       type: 'geopoint',
@@ -126,13 +137,13 @@ export default {
     select: {
       clanName: 'clanName',
       region: 'region',
-      population: 'population',
+      timePeriod: 'timePeriod',
       media: 'attachments.0'
     },
-    prepare({clanName, region, population, media}) {
+    prepare({clanName, region, timePeriod, media}) {
       return {
         title: clanName,
-        subtitle: `${region} ${population ? `(${population})` : ''}`,
+        subtitle: `${region} ${timePeriod ? `(${timePeriod})` : ''}`,
         media
       }
     }
@@ -142,6 +153,14 @@ export default {
       title: '按氏族名',
       name: 'nameAsc',
       by: [
+        {field: 'clanName', direction: 'asc'}
+      ]
+    },
+    {
+      title: '按时间（从古到今）',
+      name: 'chronologicalAsc',
+      by: [
+        {field: 'startYear', direction: 'desc'}, // BCE 年份越大越早
         {field: 'clanName', direction: 'asc'}
       ]
     },

@@ -62,7 +62,7 @@ ChinaMatri/
 
 ```javascript
 // 示例：替换为你的实际 Project ID
-projectId: 'abc123xyz'  // 替换 'your-project-id'
+projectId: '8i1xhvuq'  // 替换 'your-project-id'
 ```
 
 ### 步骤 3: 启动 Sanity Studio

@@ -1,12 +1,14 @@
 // Sanity 客户端配置
 import {createClient} from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
+import { sanityConfig } from './config.js'
 
+// 使用统一配置创建客户端
 export const sanityClient = createClient({
-  projectId: 'your-project-id', // 替换为你的 project ID
-  dataset: 'production',
-  useCdn: true, // 生产环境使用 CDN
-  apiVersion: '2024-01-01',
+  projectId: sanityConfig.projectId,
+  dataset: sanityConfig.dataset,
+  useCdn: sanityConfig.useCdn,
+  apiVersion: sanityConfig.apiVersion,
 })
 
 // 图片 URL 生成器

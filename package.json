@@ -9,7 +9,9 @@
     "deploy": "sanity deploy",
     "start": "python3 -m http.server 8000",
     "studio": "cd studio && npx sanity dev",
-    "migrate": "node src/data/migrate-to-sanity.js"
+    "migrate": "node src/data/migrate-to-sanity.js",
+    "import": "node src/data/import-unified.js",
+    "export": "node src/data/export-unified.js"
   },
   "keywords": [
     "sanity",
@@ -21,7 +23,8 @@
   "license": "MIT",
   "dependencies": {
     "@sanity/client": "^6.15.7",
-    "@sanity/image-url": "^1.0.2"
+    "@sanity/image-url": "^1.0.2",
+    "csv-parser": "^3.0.0"
   },
   "devDependencies": {
     "@sanity/cli": "^3.99.0",

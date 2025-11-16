@@ -1,0 +1,15 @@
+title,category,subcategory,subtitle,summary,latitude,longitude,dateRange,tags,featured,sourceLink
+女娲,goddess,creation,创世女神,中国上古神话中的创世女神和造物主，相传抟土造人、炼石补天。,,,上古时代,"创世,补天,造人",true,https://zh.wikipedia.org/wiki/女娲
+西王母,goddess,nature,瑶池圣母,掌管不死药的女神，居于昆仑山瑶池。,,,上古时代,"昆仑,不死药,瑶池",true,https://zh.wikipedia.org/wiki/西王母
+嫘祖,goddess,culture,蚕桑始祖,黄帝正妃，发明养蚕缫丝。,,,约公元前2550年,"蚕桑,纺织",false,https://zh.wikipedia.org/wiki/嫘祖
+半坡遗址,site,yangshao,仰韶文化,黄河流域新石器时代文化，发现大量母系氏族遗迹。,34.28,109.04,公元前4800-3600年,"仰韶文化,母系氏族,黄河流域",true,https://zh.wikipedia.org/wiki/半坡遗址
+河姆渡遗址,site,hemudu,河姆渡文化,长江下游新石器时代文化，展现农业社会。,29.96,121.36,公元前5500-4500年,"河姆渡文化,稻作农业,长江流域",true,https://zh.wikipedia.org/wiki/河姆渡遗址
+红山文化遗址,site,hongshan,红山文化,辽河流域新石器时代文化，出土女神庙。,42.00,119.00,公元前4500-3000年,"红山文化,女神庙,辽河流域",true,https://zh.wikipedia.org/wiki/红山文化
+李济,scholar,chinese,中国考古学之父,中国第一位考古学家，主持殷墟发掘。,,,1896-1979,"考古学,殷墟",true,https://zh.wikipedia.org/wiki/李济_(考古学家)
+摩尔根,scholar,western,《古代社会》作者,美国人类学家，提出母权社会理论。,,,1818-1881,"人类学,母权制,《古代社会》",true,https://zh.wikipedia.org/wiki/路易斯·亨利·摩尔根
+李玫瑾,scholar,chinese,犯罪心理学家,关注女性犯罪和家庭教育研究。,,,1958-,"犯罪心理学,家庭教育",false,
+
+
+
+
+
