@@ -243,130 +243,97 @@
         </div>
     </footer>
 
-    <script>
-        const goddesses = [
-            {
-                name: "女娲",
-                category: "creation",
-                categoryName: "创世女神",
-                description: "创造人类、补天救世的始祖女神",
-                image: "http://static.photos/abstract/640x360/1",
-                link: "#nuwa"
-            },
-            {
-                name: "西王母",
-                category: "nature",
-                categoryName: "自然女神",
-                description: "昆仑山瑶池的长生女神",
-                image: "http://static.photos/abstract/640x360/2",
-                link: "#xiwangmu"
-            },
-            {
-                name: "嫘祖",
-                category: "culture",
-                categoryName: "文化女神",
-                description: "发明养蚕缫丝的蚕神",
-                image: "http://static.photos/abstract/640x360/3",
-                link: "#leizu"
-            },
-            {
-                name: "妈祖",
-                category: "guardian",
-                categoryName: "保护神",
-                description: "东南沿海的海上保护女神",
-                image: "http://static.photos/abstract/640x360/4",
-                link: "#mazu"
-            },
-            {
-                name: "九天玄女",
-                category: "culture",
-                categoryName: "文化女神",
-                description: "传授兵法的战争女神",
-                image: "http://static.photos/abstract/640x360/5",
-                link: "#xuannv"
-            },
-            {
-                name: "织女",
-                category: "culture",
-                categoryName: "文化女神",
-                description: "天帝之女，织造云锦的女神",
-                image: "http://static.photos/abstract/640x360/6",
-                link: "#zhinu"
-            },
-            {
-                name: "常羲",
-                category: "nature",
-                categoryName: "自然女神",
-                description: "月亮女神，生十二月",
-                image: "http://static.photos/abstract/640x360/7",
-                link: "#changxi"
-            },
-            {
-                name: "羲和",
-                category: "nature",
-                categoryName: "自然女神",
-                description: "太阳女神，驾驶日车",
-                image: "http://static.photos/abstract/640x360/8",
-                link: "#xihe"
-            },
-            {
-                name: "女魃",
-                category: "nature",
-                categoryName: "自然女神",
-                description: "旱神，黄帝之女",
-                image: "http://static.photos/abstract/640x360/9",
-                link: "#nuba"
-            },
-            {
-                name: "观音",
-                category: "guardian",
-                categoryName: "保护神",
-                description: "慈悲救苦的菩萨",
-                image: "http://static.photos/abstract/640x360/10",
-                link: "#guanyin"
-            },
-            {
-                name: "碧霞元君",
-                category: "guardian",
-                categoryName: "保护神",
-                description: "泰山女神，庇佑众生",
-                image: "http://static.photos/abstract/640x360/11",
-                link: "#bixia"
-            },
-            {
-                name: "女丑",
-                category: "creation",
-                categoryName: "创世女神",
-                description: "少昊之母，东方女神",
-                image: "http://static.photos/abstract/640x360/12",
-                link: "#nuchou"
+    <script type="module">
+        import { sanityConfig } from '../src/js/config.js';
+
+        // Sanity Client
+        const projectId = sanityConfig.projectId;
+        const dataset = sanityConfig.dataset;
+        const apiVersion = sanityConfig.apiVersion;
+
+        async function fetchGoddesses() {
+            const query = `*[_type == "goddess"] | order(name asc) {
+                _id,
+                name,
+                time,
+                role,
+                category,
+                "categoryName": select(
+                    category == "creation" => "创世女神",
+                    category == "nature" => "自然女神",
+                    category == "culture" => "文化女神",
+                    category == "guardian" => "保护神",
+                    "其他"
+                ),
+                story,
+                mythologySource,
+                "imageUrl": attachments[_type == "image"][0].asset->url
+            }`;
+
+            const url = `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}?query=${encodeURIComponent(query)}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data.result || [];
+            } catch (error) {
+                console.error('获取女神数据失败:', error);
+                return [];
             }
-        ];
+        }
+
+        function getCategoryText(category) {
+            const map = {
+                'creation': '创世女神',
+                'nature': '自然女神',
+                'culture': '文化女神',
+                'guardian': '保护神',
+                'other': '其他'
+            };
+            return map[category] || '其他';
+        }
 
         function renderGoddesses(data) {
             const container = document.getElementById('goddesses-container');
-            container.innerHTML = data.map(goddess => `
-                <a href="${goddess.link}" class="goddess-card block bg-white rounded-lg overflow-hidden shadow-md">
-                    <div class="aspect-w-16 aspect-h-9 overflow-hidden">
-                        <img src="${goddess.image}" alt="${goddess.name}" class="w-full h-64 object-cover">
+            
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-gray-500 text-lg">暂无女神信息</p>
+                        <p class="text-gray-400 text-sm mt-2">请在 Sanity Studio 中添加数据</p>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="text-2xl font-bold text-purple-700">${goddess.name}</h3>
-                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-semibold">
-                                ${goddess.categoryName}
-                            </span>
+                `;
+                return;
+            }
+
+            container.innerHTML = data.map(goddess => {
+                const imageUrl = goddess.imageUrl || 'http://static.photos/abstract/640x360/1';
+                const description = goddess.role || '暂无描述';
+                const categoryName = goddess.categoryName || getCategoryText(goddess.category);
+                
+                return `
+                    <div class="goddess-card block bg-white rounded-lg overflow-hidden shadow-md">
+                        <div class="aspect-w-16 aspect-h-9 overflow-hidden">
+                            <img src="${imageUrl}" alt="${goddess.name}" class="w-full h-64 object-cover">
                         </div>
-                        <p class="text-gray-600">${goddess.description}</p>
-                        <div class="mt-4 flex items-center text-purple-600 font-medium text-sm">
-                            了解详情
-                            <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-2xl font-bold text-purple-700">${goddess.name}</h3>
+                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-semibold">
+                                    ${categoryName}
+                                </span>
+                            </div>
+                            <p class="text-gray-600">${description}</p>
+                            ${goddess.time ? `<p class="text-sm text-gray-500 mt-2">时期：${goddess.time}</p>` : ''}
+                            ${goddess.mythologySource ? `<p class="text-sm text-gray-500">出处：${goddess.mythologySource}</p>` : ''}
                         </div>
                     </div>
-                </a>
-            `).join('');
+                `;
+            }).join('');
             feather.replace();
         }
+
+        let allGoddesses = [];
 
         function filterCategory(category) {
             // Update button styles
@@ -379,15 +346,19 @@
 
             // Filter data
             const filtered = category === 'all' 
-                ? goddesses 
-                : goddesses.filter(g => g.category === category);
+                ? allGoddesses 
+                : allGoddesses.filter(g => g.category === category);
 
             renderGoddesses(filtered);
         }
 
+        // Make filterCategory globally accessible
+        window.filterCategory = filterCategory;
+
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            renderGoddesses(goddesses);
+        document.addEventListener('DOMContentLoaded', async function() {
+            allGoddesses = await fetchGoddesses();
+            renderGoddesses(allGoddesses);
             feather.replace();
         });
     </script>
